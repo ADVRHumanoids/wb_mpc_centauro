@@ -60,16 +60,16 @@
     <group unless="$(arg xbot_plugin)">
         <group if="$(arg gdb)">
             <node pkg="ocs2_centauro_ros" type="legged_robot_dummy" name="legged_robot_dummy"
-                  output="screen" launch-prefix="gnome-terminal -- gdb -e run --args"/>
+                  output="screen" launch-prefix="gnome-terminal -- gdb -e run --args" cwd="/"/>
             
             <node pkg="ocs2_centauro_ros" type="centauro_ddp_mpc" name="legged_robot_ddp_mpc"
-          	   output="screen" launch-prefix="gnome-terminal -- gdb -e run --args"/>
+                   output="screen" launch-prefix="gnome-terminal -- gdb -e run --args" cwd="/"/>
         </group>
         <group unless="$(arg gdb)">
             <node pkg="ocs2_centauro_ros" type="legged_robot_dummy" name="legged_robot_dummy"
-                  output="screen" launch-prefix="gnome-terminal --"/>
+                  output="screen" launch-prefix="gnome-terminal --" cwd="/"/>
             <node pkg="ocs2_centauro_ros" type="centauro_ddp_mpc" name="legged_robot_ddp_mpc"
-          	   output="screen" launch-prefix=""/>
+                   output="screen" launch-prefix=""/>
         </group>
     </group>
 

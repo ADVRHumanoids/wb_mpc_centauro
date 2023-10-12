@@ -43,6 +43,12 @@ Additional modifications and contributions by Ioannis Dadiotis:
 
 #include "ocs2_centauro/common/Types.h"
 
+#include <boost/property_tree/ptree.hpp>        // for parsing the relative path
+#include <boost/property_tree/info_parser.hpp>
+#include <sstream>
+#include <ocs2_core/misc/LoadData.h>
+#include <boost/filesystem.hpp>
+
 namespace ocs2 {
 namespace legged_robot {
 
@@ -103,6 +109,55 @@ inline vector_t robotObjectWeightCompensatingInput(const CentroidalModelInfoTpl<
     }  // end of i loop
   }
   return input;
+}
+
+// Function to get the directory of the current source file
+inline std::string getCurrentFileDirectory() {
+    const std::string filePath(__FILE__);
+    return filePath.substr(0, filePath.find_last_of("/\\"));
+}
+
+// Function to check if the path is relative
+inline bool isRelativePath(const std::string& path) {
+    return (path.find("..") == 0 || path.find(".") == 0);
+}
+
+// Function to convert relative paths to absolute paths
+inline std::string makeAbsolutePath(const std::string& currentDir, const std::string& relativePath) {
+    namespace fs = boost::filesystem;
+    fs::path currentPath(currentDir);
+    fs::path relative(relativePath);
+    fs::path absolute = currentPath / relative;
+    try {
+        fs::path canonicalPath = fs::canonical(absolute);
+        return canonicalPath.string();
+    } catch (const fs::filesystem_error& e) {
+        throw std::runtime_error("[ModelSettings] Error in canonical path resolution (boost::filesystem::canonical)!");
+    }
+}
+
+/**
+ * Loads relative path from .info file, which can have the form ../some_path or ./some_path
+ */
+template <typename T>
+inline void loadPtreeValueOrRelativePath(const boost::property_tree::ptree& pt, T& value, const std::string& name, bool verbose, long printWidth = 80) {
+    bool updated = true;
+
+    try {
+        std::string path = pt.get<std::string>(name);
+        if (isRelativePath(path)) {
+            // Convert relative path to absolute path
+            std::string currentDir = getCurrentFileDirectory();
+            path = makeAbsolutePath(currentDir, path);
+        }
+        value = static_cast<T>(path);
+    } catch (const boost::property_tree::ptree_bad_path&) {
+        updated = false;
+    }
+    if (verbose) {
+        const std::string nameString = name.substr(name.find_last_of('.') + 1);
+        loadData::printValue(std::cerr, value, nameString, updated, printWidth);
+    }
 }
 
 }  // namespace legged_robot

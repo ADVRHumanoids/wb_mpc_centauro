@@ -33,6 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <boost/property_tree/ptree.hpp>
 
 #include <ocs2_core/misc/LoadData.h>
+#include <ocs2_centauro/common/utils.h>
 
 namespace ocs2 {
 namespace legged_robot {
@@ -54,7 +55,7 @@ ModelSettings loadModelSettings(const std::string& filename, const std::string& 
 
   loadData::loadPtreeValue(pt, modelSettings.verboseCppAd, fieldName + ".verboseCppAd", verbose);
   loadData::loadPtreeValue(pt, modelSettings.recompileLibrariesCppAd, fieldName + ".recompileLibrariesCppAd", verbose);
-  loadData::loadPtreeValue(pt, modelSettings.modelFolderCppAd, fieldName + ".modelFolderCppAd", verbose);
+  loadPtreeValueOrRelativePath(pt, modelSettings.modelFolderCppAd, fieldName + ".modelFolderCppAd", verbose);
 
   if (verbose) {
     std::cerr << " #### =============================================================================" << std::endl;

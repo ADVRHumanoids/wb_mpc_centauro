@@ -15,8 +15,7 @@ model_settings
 
   verboseCppAd                  true
   recompileLibrariesCppAd       false
-  ; modelFolderCppAd              /home/idadiotis/ocs2_ws/src/ocs2_hhcm/ocs2_centauro/auto_generated/locoma/hard/centroidal
-  modelFolderCppAd              /home/centauro/ioannis_ocs2_ws/src/ocs2_hhcm/ocs2_centauro/auto_generated/locoma/hard/centroidal
+  modelFolderCppAd                ../../../auto_generated/locoma/hard/centroidal
   ; modelFolderCppAd              /tmp/ocs2/locoma/hard
 }
 
