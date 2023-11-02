@@ -1,0 +1,6 @@
+# Ignore files below
+CMakeLists.txt.user
+
+# Except this file
+!.gitignore
+

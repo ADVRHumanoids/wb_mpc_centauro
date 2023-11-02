@@ -1,0 +1,37 @@
+# target of ee frame wrt marker frame
+
+globalFrame: "odometry/world"
+eeNames: ["arm1_8", "dagana_2_tcp"]
+leftTargetTopic: "/legged_robot_mpc_arm1_8target"
+rightTargetTopic: "/legged_robot_mpc_dagana_2_tcptarget"
+markerId: 1       # not used for now assuming there is only one marker in the field of view
+
+# params to define target positions of approaching and grasping phase
+boxDimensions: [0.3, 0.3, 0.3]
+safetyDistance: 0.1
+ballEeRadius: 0.07
+penaltyDistance: 0.02
+
+# approach phase
+approachingPhase:
+  active: True
+#  approachWrtMarkerLeft: [0.0, -0.2, 0.15]
+#  approachWrtMarkerRight: [ 0.0, -0.2, 0.15]
+  approachTime:  6.0
+  interpolateReference: True     # mpc has to receive an interpolated reference
+
+# grasp phase
+graspingPhase:
+#  approachWrtMarkerLeft: [0.0, -0.2, 0.15]
+#  approachWrtMarkerRight: [ 0.0, -0.2, 0.15 ]
+  time:  6.0
+  interpolateReference: True     # mpc has to receive an interpolated reference
+
+# lift phase
+liftingPhase:
+  active: True
+  liftHeight: 0.1
+  time:  6.0
+  interpolateReference: True     # mpc has to receive an interpolated reference
+
+returnToInitialPose: True

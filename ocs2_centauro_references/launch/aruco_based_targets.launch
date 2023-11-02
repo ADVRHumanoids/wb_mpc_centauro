@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <!-- aruco detect arguments -->
+  <arg name="camera_real_robot" default="false"/>
+  <arg unless="$(arg camera_real_robot)"  name="camera" value="/D435_head_camera/color" />
+  <arg if="$(arg camera_real_robot)"  name="camera" value="/D435i/D435i_camera_head/color" />
+
+  <arg unless="$(arg camera_real_robot)" name="fiducial_len" default="0.18"/> <!-- marker size in meter-->
+  <arg unless="$(arg camera_real_robot)" name="dictionary" default="16" /><!-- -->
+  <arg if="$(arg camera_real_robot)"  name="fiducial_len" default="0.065"/> <!-- overwrite for real robot -->
+  <arg if="$(arg camera_real_robot)" name="dictionary" default="0" /><!-- -->
+
+  <arg name="publish_fiducial_tf" default="true" />
+
+  <include file="$(find ocs2_centauro_references)/launch/aruco_detect.launch">
+      <arg name="camera" value="$(arg camera)" />
+      <arg name="fiducial_len" value="$(arg fiducial_len)"/> <!-- marker size in meter-->
+      <arg name="dictionary" value="$(arg dictionary)" /><!-- -->
+      <arg name="publish_fiducial_tf" value="$(arg publish_fiducial_tf)" />
+  </include>
+
+  <!-- flag for scenario: bimanual_box_grasp, dagana_grasp, wall contact -->
+  <arg name="scenario" default="dagana_grasp" />
+  <node name="aruco_based_targets" pkg="ocs2_centauro_references" type="arucoBasedTargets.py" respawn="false" output="screen">
+        <param name="scenario" value="$(arg scenario)"/>
+  </node>
+
+  <node name="apriori_known_targets" pkg="ocs2_centauro_references" type="aPrioriKnownReleaseTarget.py" respawn="false" output="screen">
+        <param name="scenario" value="$(arg scenario)"/>
+  </node>
+
+  <arg name="rviz" default="true" />
+  <node if="$(arg rviz)" type="rviz" name="rviz_aruco" pkg="rviz" args="-d $(find ocs2_centauro_references)/rviz/aruco_target.rviz"/>
+
+</launch>

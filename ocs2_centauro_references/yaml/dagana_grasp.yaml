@@ -1,0 +1,56 @@
+# Params for the scenario of grasping an object with dagana gripper using an ocs2-based MPC
+
+globalFrame: "odometry/world"
+eeNames: ["arm1_8", "dagana_2_tcp"]
+armIndex: 1                                                 # arm to use for grasping between 0, 1
+leftTargetTopic: "/legged_robot_mpc_arm1_8target"           # ros topic for targets
+rightTargetTopic: "/legged_robot_mpc_dagana_2_tcptarget"
+
+approachingPhase:
+  active: False                                      # include an approaching motion before reaching the target
+  ApWrtMarker: [-0.2, 0.0, 0.45]                               # approach point wrt marker frame
+  approachTime:  8.0                                          # duration of the approaching motion
+
+reachingPhase:
+  active: True
+  # targetWrtMarker: [-0.5, 0.0, 0.28]              # lenovo box 24 cm side
+  # targetWrtMarker: [-0.5, 0.0, 0.14]              # lenovo box 11 cm side
+  # targetWrtMarker: [-0.2, 0.0, 0.44]              # random test
+  targetWrtMarker: [-0.5, 0.0, 0.20]                 # brick 20 cm
+  reachTime:  2.0                                             # time for executing the reach
+  interpolateReference: True                                  # mpc has to receive an interpolated reference (for soft task)
+
+returnToInitialPhase:
+  active: True
+  interpolateReference: True
+  reachTime: 6.0
+
+releasingPhase:
+  active: True
+  interpolateReference: True
+  table_height: 0.95
+  relWrtRefFrame: [0.4, -0.8]
+  # orientationRPY: [1.57, 1.57, 0.8]
+  orientationYPR: [-1.57, 0.52, 1.57]
+  refFrame: "base_link"
+  reachTime: 5.0
+
+contactSwitch: True                                         # consider non zero force exerted to dagana after grasping
+
+# support surface having an aruco
+supportSurface:
+  active: False
+  armIndex: 0
+  targetWrtMarker: [0, 0, 0.07]
+  reachTime:  6.0
+  interpolateReference: True     # mpc has to receive an interpolated reference
+  markerId: 1
+
+gripperControl:
+  active: True
+  # refGraspingEffort: -9.0
+  # refReleasingEffort: 9.0
+  refGraspingEffort: 9.0   # real robot
+  refReleasingEffort: -2.0
+  refGraspingPosition: 1.0
+  refReleasingPosition: 0.0

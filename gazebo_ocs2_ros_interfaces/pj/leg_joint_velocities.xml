@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root version="2.3.8">
+ <tabbed_widget parent="main_window" name="Main Window">
+  <Tab containers="1" tab_name="tab1">
+   <Container>
+    <DockSplitter count="1" orientation="-" sizes="1">
+     <DockSplitter count="2" orientation="|" sizes="0.5;0.5">
+      <DockSplitter count="2" orientation="-" sizes="0.5;0.5">
+       <DockArea name="...">
+        <plot style="Lines" mode="TimeSeries">
+         <range top="0.332200" left="0.000000" right="88.130796" bottom="-0.348200"/>
+         <limitY/>
+         <curve color="#ff7f0e" name="/xbotcore/joint_states/velocity_reference.33"/>
+         <curve color="#9467bd" name="/xbotcore/joint_states/velocity_reference.34"/>
+         <curve color="#17becf" name="/xbotcore/joint_states/velocity_reference.35"/>
+         <curve color="#bcbd22" name="/xbotcore/joint_states/velocity_reference.36"/>
+         <curve color="#1f77b4" name="/xbotcore/joint_states/velocity_reference.37"/>
+         <curve color="#d62728" name="/xbotcore/joint_states/motor_velocity.33"/>
+         <curve color="#1ac938" name="/xbotcore/joint_states/motor_velocity.34"/>
+         <curve color="#ff7f0e" name="/xbotcore/joint_states/motor_velocity.35"/>
+         <curve color="#f14cc1" name="/xbotcore/joint_states/motor_velocity.36"/>
+         <curve color="#9467bd" name="/xbotcore/joint_states/motor_velocity.37"/>
+         <curve color="#17becf" name="/xbotcore/command/velocity.0"/>
+         <curve color="#bcbd22" name="/xbotcore/command/velocity.1"/>
+         <curve color="#1f77b4" name="/xbotcore/command/velocity.2"/>
+         <curve color="#d62728" name="/xbotcore/command/velocity.3"/>
+         <curve color="#1ac938" name="/xbotcore/command/velocity.4"/>
+         <curve color="#ff7f0e" name="/xbotcore/command/velocity.5"/>
+        </plot>
+       </DockArea>
+       <DockArea name="...">
+        <plot style="Lines" mode="TimeSeries">
+         <range top="0.182600" left="0.000000" right="88.130796" bottom="-0.178600"/>
+         <limitY/>
+         <curve color="#ff7f0e" name="/xbotcore/joint_states/velocity_reference.27"/>
+         <curve color="#f14cc1" name="/xbotcore/joint_states/velocity_reference.28"/>
+         <curve color="#9467bd" name="/xbotcore/joint_states/velocity_reference.29"/>
+         <curve color="#17becf" name="/xbotcore/joint_states/velocity_reference.30"/>
+         <curve color="#bcbd22" name="/xbotcore/joint_states/velocity_reference.31"/>
+         <curve color="#1f77b4" name="/xbotcore/joint_states/motor_velocity.27"/>
+         <curve color="#d62728" name="/xbotcore/joint_states/motor_velocity.28"/>
+         <curve color="#1ac938" name="/xbotcore/joint_states/motor_velocity.29"/>
+         <curve color="#ff7f0e" name="/xbotcore/joint_states/motor_velocity.30"/>
+         <curve color="#f14cc1" name="/xbotcore/joint_states/motor_velocity.31"/>
+         <curve color="#9467bd" name="/xbotcore/command/velocity.12"/>
+         <curve color="#17becf" name="/xbotcore/command/velocity.13"/>
+         <curve color="#bcbd22" name="/xbotcore/command/velocity.14"/>
+         <curve color="#1f77b4" name="/xbotcore/command/velocity.15"/>
+         <curve color="#d62728" name="/xbotcore/command/velocity.16"/>
+        </plot>
+       </DockArea>
+      </DockSplitter>
+      <DockSplitter count="2" orientation="-" sizes="0.5;0.5">
+       <DockArea name="...">
+        <plot style="Lines" mode="TimeSeries">
+         <range top="0.795475" left="0.000000" right="88.130796" bottom="-0.232475"/>
+         <limitY/>
+         <curve color="#f14cc1" name="/xbotcore/joint_states/velocity_reference.15"/>
+         <curve color="#9467bd" name="/xbotcore/joint_states/velocity_reference.16"/>
+         <curve color="#17becf" name="/xbotcore/joint_states/velocity_reference.17"/>
+         <curve color="#bcbd22" name="/xbotcore/joint_states/velocity_reference.18"/>
+         <curve color="#1f77b4" name="/xbotcore/joint_states/velocity_reference.19"/>
+         <curve color="#d62728" name="/xbotcore/joint_states/motor_velocity.15"/>
+         <curve color="#1ac938" name="/xbotcore/joint_states/motor_velocity.16"/>
+         <curve color="#ff7f0e" name="/xbotcore/joint_states/motor_velocity.17"/>
+         <curve color="#f14cc1" name="/xbotcore/joint_states/motor_velocity.18"/>
+         <curve color="#9467bd" name="/xbotcore/joint_states/motor_velocity.19"/>
+         <curve color="#17becf" name="/xbotcore/command/velocity.10"/>
+         <curve color="#bcbd22" name="/xbotcore/command/velocity.6"/>
+         <curve color="#1f77b4" name="/xbotcore/command/velocity.7"/>
+         <curve color="#d62728" name="/xbotcore/command/velocity.8"/>
+         <curve color="#1ac938" name="/xbotcore/command/velocity.9"/>
+        </plot>
+       </DockArea>
+       <DockArea name="...">
+        <plot style="Lines" mode="TimeSeries">
+         <range top="0.143675" left="0.000000" right="88.130796" bottom="-0.178675"/>
+         <limitY/>
+         <curve color="#1ac938" name="/xbotcore/joint_states/velocity_reference.21"/>
+         <curve color="#ff7f0e" name="/xbotcore/joint_states/velocity_reference.22"/>
+         <curve color="#f14cc1" name="/xbotcore/joint_states/velocity_reference.23"/>
+         <curve color="#9467bd" name="/xbotcore/joint_states/velocity_reference.24"/>
+         <curve color="#17becf" name="/xbotcore/joint_states/velocity_reference.25"/>
+         <curve color="#bcbd22" name="/xbotcore/joint_states/motor_velocity.21"/>
+         <curve color="#1f77b4" name="/xbotcore/joint_states/motor_velocity.22"/>
+         <curve color="#d62728" name="/xbotcore/joint_states/motor_velocity.23"/>
+         <curve color="#1ac938" name="/xbotcore/joint_states/motor_velocity.24"/>
+         <curve color="#ff7f0e" name="/xbotcore/joint_states/motor_velocity.25"/>
+         <curve color="#f14cc1" name="/xbotcore/command/velocity.18"/>
+         <curve color="#9467bd" name="/xbotcore/command/velocity.19"/>
+         <curve color="#17becf" name="/xbotcore/command/velocity.20"/>
+         <curve color="#bcbd22" name="/xbotcore/command/velocity.21"/>
+         <curve color="#1f77b4" name="/xbotcore/command/velocity.22"/>
+        </plot>
+       </DockArea>
+      </DockSplitter>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <currentTabIndex index="0"/>
+ </tabbed_widget>
+ <use_relative_time_offset enabled="1"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <Plugins>
+  <plugin ID="DataLoad CSV">
+   <default time_axis=""/>
+  </plugin>
+  <plugin ID="DataLoad ROS bags">
+   <use_header_stamp value="false"/>
+   <use_renaming_rules value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+  </plugin>
+  <plugin ID="DataLoad ULog"/>
+  <plugin ID="LSL Subscriber"/>
+  <plugin ID="MQTT Subscriber"/>
+  <plugin ID="ROS Topic Subscriber">
+   <use_header_stamp value="false"/>
+   <use_renaming_rules value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+  </plugin>
+  <plugin ID="UDP Server"/>
+  <plugin ID="WebSocket Server"/>
+  <plugin ID="ZMQ Subscriber"/>
+  <plugin ID="ROS /rosout Visualization" status="idle"/>
+  <plugin ID="ROS Topic Re-Publisher" status="idle"/>
+ </Plugins>
+ <!-- - - - - - - - - - - - - - - -->
+ <previouslyLoaded_Datafiles/>
+ <previouslyLoaded_Streamer name="ROS Topic Subscriber"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <customMathEquations/>
+ <snippets/>
+ <!-- - - - - - - - - - - - - - - -->
+</root>
+

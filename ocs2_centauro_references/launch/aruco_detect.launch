@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+        
+  <arg name="camera" default="/D435_head_camera/color" /> 
+  <arg name="image" default="image_raw"/>
+  <arg name="transport" default="compressed" />
+  
+  <arg name="fiducial_len" default="0.18"/> <!-- marker size in meter-->
+  <arg name="dictionary" default="16" /><!-- -->
+  <arg name="output" default="screen" /> <!-- log for no print -->
+  
+  <arg name="publish_fiducial_tf" default="true" /> 
+  <arg name="publish_images" default="true" /> 
+
+  <arg name="do_pose_estimation" default="true"/>
+  <arg name="ignore_fiducials" default="" />
+  <arg name="fiducial_len_override" default="" />
+  
+  <node pkg="aruco_detect" name="aruco_detect"
+    type="aruco_detect" output="$(arg output)" respawn="false">
+    <param name="image_transport" value="$(arg transport)"/>
+    <param name="publish_images" value="$(arg publish_images)" />
+    <param name="fiducial_len" value="$(arg fiducial_len)"/>
+    <param name="dictionary" value="$(arg dictionary)"/>
+    <param name="do_pose_estimation" value="$(arg do_pose_estimation)"/>
+    <param name="ignore_fiducials" value="$(arg ignore_fiducials)"/>
+    <param name="fiducial_len_override" value="$(arg fiducial_len_override)"/>
+    <param name="publish_fiducial_tf" value="$(arg publish_fiducial_tf)"/>
+    <remap from="camera/compressed" to="$(arg camera)/$(arg image)/$(arg transport)"/> 
+    <remap from="camera_info" to="$(arg camera)/camera_info"/>
+  </node>
+
+</launch>
+

@@ -1,0 +1,9 @@
+# [low power, medium power, high power]
+
+lower_body:
+    p_gains: [30, 120, 200]
+    d_gains: [30, 60, 60]
+
+upper_body:
+    p_gains: [30, 120, 200]
+    d_gains: [30, 60, 60]

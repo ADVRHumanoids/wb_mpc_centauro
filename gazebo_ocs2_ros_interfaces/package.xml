@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<package format="2">
+
+  <name>gazebo_ocs2_ros_interfaces</name>
+  <version>0.0.0</version>
+  <description>The ocs2 communication interfaces to ROS and Xbotcore (gazebo/real robot)</description>
+
+  <license>BSD3</license>
+  <maintainer email="ioannis.dadiotis@iit.it">Ioannis Dadiotis</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>cmake_clang_tools</build_depend>
+
+  <depend>roscpp</depend>
+  <depend>ocs2_msgs</depend>
+  <depend>ocs2_core</depend>
+  <depend>ocs2_ddp</depend>
+  <depend>ocs2_mpc</depend>
+  <depend>std_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>interactive_markers</depend>
+
+  <depend>xbot_msgs</depend>
+  <depend>ocs2_pinocchio_interface</depend>
+  <depend>ocs2_centroidal_model</depend>
+  <depend>ocs2_centauro</depend>
+  <depend>eigen_conversions</depend>
+
+  <exec_depend>rqt_multiplot</exec_depend>
+
+</package>

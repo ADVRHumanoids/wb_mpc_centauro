@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="aruco_targets" default="False"/>
+
+    <group unless="$(arg aruco_targets)">
+        <arg name="ee_frame" default="arm1_8"/>
+        <arg name="target_topic" default="/legged_robot_mpc_arm1_8target"/>
+        <arg name="relative_target" default="[0.1, 0.0, 0.2]"/>
+        <arg name="waypoint" default="[0.1, 0.0, 0.0]"/>
+        <arg name="include_waypoint" default="True"/>
+        <arg name="durations" default="[1.0, 3.0]"/>
+        <arg name="contact_switch" default="False"/>
+        <arg name="waypoint_velocity" default="[0.0, 0.0, 0.0]"/>
+
+        <node name="target_trajectories_publisher" pkg="ocs2_centauro_references" type="targetTrajectoriesPublisherNode.py" output="screen">
+            <param name="ee_frame" value="$(arg ee_frame)"/>
+            <param name="global_frame" value="$(arg global_frame)"/>
+            <param name="target_topic" value="$(arg target_topic)"/>
+            <param name="relative_target" value="$(arg relative_target)"/>
+            <param name="waypoint" value="$(arg waypoint)"/>
+            <param name="include_waypoint" value="$(arg include_waypoint)"/>
+            <param name="durations" value="$(arg durations)"/>
+            <param name="contact_switch" value="$(arg contact_switch)"/>
+            <param name="waypoint_velocity" value="$(arg waypoint_velocity)"/>
+        </node>
+    </group>
+
+    <group if="$(arg aruco_targets)">
+        <arg name="aruco_target_topic" default="/aruco_based/lateral_targets"/>     <!-- if targets are subscribed from topic -->
+        <arg name="scenario" default="dagana_grasp"/>       <!-- different for dagana_grasp or box related -->
+        <arg name="durations1" default="[0.0, -1.0]"/>
+        <arg name="durations2" default="[0.0, -1.0]"/>
+        <arg name="contact_switch1" default="False"/>
+        <arg name="contact_switch2" default="False"/>
+
+        <node name="aruco_targets_to_mpc" pkg="ocs2_centauro_references" type="arucoTargetTrajectoriesToMpc.py" output="screen">
+            <param name="aruco_target_topic" value="$(arg aruco_target_topic)"/>
+            <param name="durations1"  value="$(arg durations1)"/>
+            <param name="durations2"  value="$(arg durations2)"/>
+            <param name="contact_switch1"  value="$(arg contact_switch1)"/>
+            <param name="contact_switch2"  value="$(arg contact_switch2)"/>
+            <param name="scenario"  value="$(arg scenario)"/>
+        </node>
+    </group>
+
+</launch>

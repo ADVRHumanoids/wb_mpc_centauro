@@ -1,0 +1,105 @@
+simulation
+{
+	centroidal_model_rbd_conversions
+	{
+		pGains
+		{
+                   [0] 8000  ; hip_yaw_1
+                   [1] 8000  ; hip_pitch_1
+                   [2] 8000  ; knee_pitch_1
+                   [3] 4000  ; ankle_pitch_1
+                   [4] 4000  ; ankle_yaw_1
+                   [5] 0     ; j_wheel_1
+		   
+                   [6] 8000  ; hip_yaw_1
+                   [7] 8000  ; hip_pitch_1
+                   [8] 8000  ; knee_pitch_1
+                   [9] 4000  ; ankle_pitch_1
+		   [10]	4000  ; ankle_yaw_1
+		   [11]	0     ; j_wheel_1
+		   
+		   [12]	8000  ; hip_yaw_1
+		   [13]	8000  ; hip_pitch_1
+		   [14]	8000  ; knee_pitch_1
+		   [15]	4000  ; ankle_pitch_1
+		   [16]	4000  ; ankle_yaw_1
+		   [17]	0     ; j_wheel_1
+		  
+		   [18]	8000  ; hip_yaw_1
+		   [19]	8000  ; hip_pitch_1
+		   [20]	8000  ; knee_pitch_1
+		   [21]	4000  ; ankle_pitch_1
+		   [22]	4000  ; ankle_yaw_1
+		   [23]	0     ; j_wheel_1
+
+		   [24]	4000 ; j_arm1_1
+		   [25]	4000 ; j_arm1_2
+		   [26]	4000 ; j_arm1_3
+		   [27]	4000 ; j_arm1_4
+		   [28]	1000 ; j_arm1_5
+		   [29]	1000 ; j_arm1_6
+		   [30]	1000 ; j_arm1_7
+
+		   [31]	4000 ; j_arm1_1
+		   [32]	4000 ; j_arm1_2
+		   [33]	4000 ; j_arm1_3
+		   [34]	4000 ; j_arm1_4
+		   [35]	1000 ; j_arm1_5
+		   [36]	1000 ; j_arm1_6
+		   [37]	1000 ; j_arm1_7
+
+		;; Torso Joint Positions: [torso] ;;
+		   [38]	8000.0 ; torso_yaw
+		}
+
+		dGains
+		{
+                   [0] 50  ; hip_yaw_1
+                   [1] 50  ; hip_pitch_1
+                   [2] 50  ; knee_pitch_1
+                   [3] 40  ; ankle_pitch_1
+                   [4] 40  ; ankle_yaw_1
+                   [5] 10     ; j_wheel_1
+		   
+                   [6] 50  ; hip_yaw_1
+                   [7] 50  ; hip_pitch_1
+                   [8] 50  ; knee_pitch_1
+                   [9] 40  ; ankle_pitch_1
+		   [10]	40  ; ankle_yaw_1
+		   [11]	10     ; j_wheel_1
+		   
+		   [12]	50  ; hip_yaw_1
+		   [13]	50  ; hip_pitch_1
+		   [14]	50  ; knee_pitch_1
+		   [15]	40  ; ankle_pitch_1
+		   [16]	40  ; ankle_yaw_1
+		   [17]	10     ; j_wheel_1
+		  
+		   [18]	50  ; hip_yaw_1
+		   [19]	50  ; hip_pitch_1
+		   [20]	50  ; knee_pitch_1
+		   [21]	40  ; ankle_pitch_1
+		   [22]	40  ; ankle_yaw_1
+		   [23]	10     ; j_wheel_1
+
+		   [24]	40 ; j_arm1_1
+		   [25]	40 ; j_arm1_2
+		   [26]	40 ; j_arm1_3
+		   [27]	40 ; j_arm1_4
+		   [28]	10 ; j_arm1_5
+		   [29]	10 ; j_arm1_6
+		   [30]	10 ; j_arm1_7
+
+		   [31]	40 ; j_arm1_1
+		   [32]	40 ; j_arm1_2
+		   [33]	40 ; j_arm1_3
+		   [34]	40 ; j_arm1_4
+		   [35]	10 ; j_arm1_5
+		   [36]	10; j_arm1_6
+		   [37]	10 ; j_arm1_7
+
+		;; Torso Joint Positions: [torso] ;;
+		   [38]	50.0 ; torso_yaw
+		}
+	}
+}

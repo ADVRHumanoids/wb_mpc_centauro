@@ -1,0 +1,15 @@
+# free motion of an ee
+globalFrame: "odometry/world"
+eeNames: ["arm1_8", "dagana_2_tcp"]
+armIndex: 0
+eeTargetTopics: ["/legged_robot_mpc_arm1_8target", "/legged_robot_mpc_dagana_2_tcptarget"]
+interpolateReference: True     # mpc has to receive an interpolated reference
+cutInSegments: False
+#targetsWrtRefFrame: [0.35, 0.0, 0.0]
+targetsWrtRefFrame: [[0.45, 0.0, 0.35],
+                     [0.45, 0.0, 0.9],
+                     [0.25, 0.9, 0.9],
+                     [0.35, 0.2, 2.0]]
+targetRefFrame: "polygon_center"
+reachTime:  6.0
+#returnToInitialPose: True

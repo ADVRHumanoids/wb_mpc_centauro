@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node name="ocs2_reference_publisher" pkg="ocs2_centauro_references" type="eeFreeMotionReferencePublisher.py" output="screen"/>
+</launch>

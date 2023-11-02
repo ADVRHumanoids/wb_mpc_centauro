@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <param name="use_sim_time" type="bool" value="true"/>
+  <arg name="gazebo" default="true"/>
+  
+  <arg name="box_static" default="false"/>
+  <arg name="box_heavy" default="false"/>
+    
+  <!-- gazebo configuration parameters -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="physics" default="ode"/>
+  <arg name="verbose" default="false"/>
+  <arg name="extra_gazebo_args" default=""/>
+  
+  <!-- centauro configuration parameters -->
+  <arg name="arms" default="true"/>
+  <arg name="legs" default="true"/>
+  <arg name="velodyne" default="false"/>
+  <arg name="realsense" default="false"/>
+  <arg name="ft_sensors" default="false"/>
+  <arg name="end_effector_left" default="ball"/>
+  <arg name="end_effector_right" default="ball"/>
+  
+  <!-- aruco details -->
+  <arg name="aruco_floor" default="false"/>
+  <arg name="support_box" default="false"/>
+    
+  <!-- Internal arguments, rewrite human-readable gazebo arguments to it's internal arguments -->
+  <arg unless="$(arg paused)" name="command_arg1" value=""/>
+  <arg     if="$(arg paused)" name="command_arg1" value="-u"/>
+  <arg unless="$(arg headless)" name="command_arg2" value=""/>
+  <arg     if="$(arg headless)" name="command_arg2" value="-r"/>
+  <arg unless="$(arg verbose)" name="command_arg3" value=""/>
+  <arg     if="$(arg verbose)" name="command_arg3" value="--verbose"/>
+  <arg unless="$(arg debug)" name="script_type" value="gzserver"/>
+  <arg     if="$(arg debug)" name="script_type" value="debug"/>
+
+  
+  <!-- from where the simulation enviornment will be loaded:
+       WARNING: exactly one parameter has to be true, otherwise simulation behaviour is undefined -->
+  <arg name="world_name" default="$(find centauro_gazebo)/worlds/centauro.world"/>
+
+  <!-- Load the URDF/SRDF into the ROS Parameter Server -->
+  <param name="robot_description_gz"
+         command="$(find xacro)/xacro $(find centauro_urdf)/urdf/centauro_robot.urdf.xacro ft_sensors:=$(arg ft_sensors) floating_joint:=false upper_body:=$(arg arms) legs:=$(arg legs) velodyne:=$(arg velodyne) realsense:=$(arg realsense) end_effector_left:=$(arg end_effector_left) end_effector_right:=$(arg end_effector_right)"/>
+  
+  <!-- run gazebo -->
+  <group if="$(arg gazebo)">
+  
+  <!-- start gazebo server-->
+  	<node name="gazebo" 
+          pkg="gazebo_ros" 
+          type="$(arg script_type)" 
+          respawn="false" 
+          output="screen"
+		      args="$(arg command_arg1) $(arg command_arg2) $(arg command_arg3) -e $(arg physics) $(arg extra_gazebo_args) $(arg world_name) -namespace centauro" />
+
+  	<!-- start gazebo client -->
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" if="$(arg gui)"/>
+
+  	<!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+	  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+		      args="-urdf -model centauro -param robot_description_gz"/>
+    
+    <!-- select aruco scenario floor or table -->
+    <group unless="$(arg aruco_floor)">      
+	    <include file="$(find yiannis_centauro_pytools)/launch/load/load_table_cubes.launch">
+		<arg name="pub_table_data" value="false" />
+		<arg name="pub_box_data" value="false" />
+		<arg name="t_pose_x" value="1.1" />
+	    </include>
+    </group>
+    <group if="$(arg aruco_floor)">      
+	    <include file="$(find yiannis_centauro_pytools)/launch/load/load_low_table_cubes.launch">
+            <arg name="pub_table_data" value="false" />
+            <arg name="pub_box_data" value="false" />
+            <arg name="t_pose_x" value="0.7" />
+            <arg name="t_high" value="0.2" />
+            <arg name="table_model_name" value="low_table"/>
+            <arg name="b_dim_x" value="0.03"/>
+            <arg name="b_dim_y" value="0.15"/>
+            <arg name="b_dim_z" value="0.15"/>
+            <arg name="b_rel_pose_x" value="-0.2" />
+            <arg name="box_marker" value="false"/>
+            <arg name="table_marker" value="true"/>
+            <arg if="$(arg support_box)" name="t_pose_y" value="-0.1" />
+		    <arg if="$(arg support_box)" name="t_high" value="0.0" />
+	    </include>
+	    
+	    <!-- support box -->
+	    <include if="$(arg support_box)" file="$(find yiannis_centauro_pytools)/launch/load/load_box.launch">
+            <arg name="name" default="support_box"/>
+            <arg name="dim_x" default="0.3"/>
+            <arg name="dim_y" default="0.3"/>
+            <arg name="dim_z" default="0.5"/>
+            <arg name="mass" default="15"/>
+            <arg name="pose_x" default="0.6" />
+            <arg name="pose_y" default="0.2" />
+            <arg name="pose_z" default="0.25" />
+            <arg name="markers" default="true"/>
+            <arg name="marker_pos" default="0"/>
+        </include>
+	    
+    </group>
+  </group>
+
+
+</launch>

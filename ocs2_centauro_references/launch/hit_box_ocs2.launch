@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="ee_frame" default="arm1_8"/>
+    <arg name="global_frame" default="odom"/>
+    <arg name="target_topic" default="/legged_robot_mpc_arm1_8target"/>
+
+    <arg name="relative_target" default="[0.5, 0.0, 0.0]"/>
+    <arg name="box_point" default="[0.7, 0.0, 0.0]"/>
+    <arg name="durations" default="[1.0, 2.0]"/>
+    <arg name="contact_events" default="[1.0, 2.0]"/>
+    <arg name="contact_velocity" default="[1.0, 0.0, 0.0]"/>
+
+    <arg name="keep_contact" default="False"/>  <!-- if False then keep contact with the box -->
+
+    <node name="target_trajectories_publisher" pkg="ocs2_centauro_references" type="hitBoxNode.py" output="screen">
+        <param name="ee_frame" value="$(arg ee_frame)"/>
+        <param name="global_frame" value="$(arg global_frame)"/>
+        <param name="target_topic" value="$(arg target_topic)"/>
+        <param name="relative_target" value="$(arg relative_target)"/>
+        <param name="box_point" value="$(arg box_point)"/>
+        <param name="durations" value="$(arg durations)"/>
+        <param name="contact_events" value="$(arg contact_events)"/>
+        <param name="contact_velocity" value="$(arg contact_velocity)"/>
+        <param name="keep_contact" value="$(arg keep_contact)"/>
+    </node>
+</launch>

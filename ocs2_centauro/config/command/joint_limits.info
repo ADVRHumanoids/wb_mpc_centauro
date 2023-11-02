@@ -1,0 +1,289 @@
+; Joint Position Activation selector
+jointPositionActivationFlags
+{
+    (0,0)   false     ; hip_yaw_1
+    (1,0)   false     ; hip_pitch_1
+    (2,0)   false     ; knee_pitch_1
+    (3,0)   false     ; ankle_pitch_1
+    (4,0)   false     ; ankle_yaw_1
+    (5,0)   false     ; j_wheel_1
+
+    (6,0)   false     ; hip_yaw_2
+    (7,0)   false     ; hip_pitch_2
+    (8,0)   false     ; knee_pitch_2
+    (9,0)   false     ; ankle_pitch_2
+    (10,0)  false     ; ankle_yaw_2
+    (11,0)  false     ; j_wheel_2
+
+    (12,0)  false     ; hip_yaw_3
+    (13,0)  false     ; hip_pitch_3
+    (14,0)  false     ; knee_pitch_3
+    (15,0)  false     ; ankle_pitch_3
+    (16,0)  false     ; ankle_yaw_3
+    (17,0)  false     ; j_wheel_3
+
+    (18,0)  false     ; hip_yaw_4
+    (19,0)  false     ; hip_pitch_4
+    (20,0)  false     ; knee_pitch_4
+    (21,0)  false     ; ankle_pitch_4
+    (22,0)  false     ; ankle_yaw_4
+    (23,0)  false     ; j_wheel_4
+
+    (24,0)  false     ; torso_yaw
+
+    (25,0)  true     ; j_arm1_1
+    (26,0)  true     ; j_arm1_2
+    (27,0)  true     ; j_arm1_3
+    (28,0)  true     ; j_arm1_4
+    (29,0)  true     ; j_arm1_5
+    (30,0)  true     ; j_arm1_6
+
+    (31,0)  true    ; j_arm2_1
+    (32,0)  true    ; j_arm2_2
+    (33,0)  true    ; j_arm2_3
+    (34,0)  true    ; j_arm2_4
+    (35,0)  true    ; j_arm2_5
+    (36,0)  true    ; j_arm2_6
+}
+
+; Joint Position Activation selector
+jointVelocityActivationFlags
+{
+    (0,0)   false     ; hip_yaw_1
+    (1,0)   false     ; hip_pitch_1
+    (2,0)   false     ; knee_pitch_1
+    (3,0)   false     ; ankle_pitch_1
+    (4,0)   false     ; ankle_yaw_1
+    (5,0)   false     ; j_wheel_1
+
+    (6,0)   false     ; hip_yaw_2
+    (7,0)   false     ; hip_pitch_2
+    (8,0)   false     ; knee_pitch_2
+    (9,0)   false     ; ankle_pitch_2
+    (10,0)  false     ; ankle_yaw_2
+    (11,0)  false     ; j_wheel_2
+
+    (12,0)  false     ; hip_yaw_3
+    (13,0)  false     ; hip_pitch_3
+    (14,0)  false     ; knee_pitch_3
+    (15,0)  false     ; ankle_pitch_3
+    (16,0)  false     ; ankle_yaw_3
+    (17,0)  false     ; j_wheel_3
+
+    (18,0)  false     ; hip_yaw_4
+    (19,0)  false     ; hip_pitch_4
+    (20,0)  false     ; knee_pitch_4
+    (21,0)  false     ; ankle_pitch_4
+    (22,0)  false     ; ankle_yaw_4
+    (23,0)  false     ; j_wheel_4
+
+    (24,0)  false     ; torso_yaw
+
+    (25,0)  false     ; j_arm1_1
+    (26,0)  false     ; j_arm1_2
+    (27,0)  false     ; j_arm1_3
+    (28,0)  false     ; j_arm1_4
+    (29,0)  false     ; j_arm1_5
+    (30,0)  false     ; j_arm1_6
+
+    (31,0)  false    ; j_arm2_1
+    (32,0)  false    ; j_arm2_2
+    (33,0)  false    ; j_arm2_3
+    (34,0)  false    ; j_arm2_4
+    (35,0)  false    ; j_arm2_5
+    (36,0)  false    ; j_arm2_6
+}
+
+; Joint Position Limits
+jointPositionLimits
+{
+  lowerBound
+  {
+      (0,0)  -2.03     ; hip_yaw_1
+      (1,0)  -2.0226   ; hip_pitch_1
+      (2,0)  -2.4056   ; knee_pitch_1
+      (3,0)  -2.4056   ; ankle_pitch_1
+      (4,0)  -2.5626   ; ankle_yaw_1
+      (5,0)  -100.0       ; j_wheel_1
+
+      (6,0)  -2.51     ; hip_yaw_2
+      (7,0)  -2.0156   ; hip_pitch_2
+      (8,0)  -2.4006   ; knee_pitch_2
+      (9,0)  -2.3266   ; ankle_pitch_2
+      (10,0) -2.5546   ; ankle_yaw_2
+      (11,0)  -100.0      ; j_wheel_2
+
+      (12,0)  -2.51     ; hip_yaw_3
+      (13,0)  -2.0126   ; hip_pitch_3
+      (14,0)  -2.4056   ; knee_pitch_3
+      (15,0)  -2.4696   ; ankle_pitch_3
+      (16,0)  -2.5606   ; ankle_yaw_3
+      (17,0)  -100.0       ; j_wheel_3
+
+      (18,0)  -2.03     ; hip_yaw_4
+      (19,0)  -2.0326   ; hip_pitch_4
+      (20,0)  -2.4176   ; knee_pitch_4
+      (21,0)  -2.3426   ; ankle_pitch_4
+      (22,0)  -2.6046   ; ankle_yaw_4
+      (23,0)  -100.0       ; j_wheel_4
+
+      (24,0)  -2.618 ; torso_yaw
+
+      (25,0)  -3.312 ; j_arm1_1
+      (26,0)  0.020  ; j_arm1_2
+      (27,0)  -2.552 ; j_arm1_3
+      (28,0)  -2.465 ; j_arm1_4
+      (29,0)  -2.569 ; j_arm1_5
+      (30,0)  -1.529 ; j_arm1_6
+
+      (31,0)  -3.3458 ; j_arm2_1
+      (32,0)  -3.4258 ; j_arm2_2
+      (33,0)  -2.5614 ; j_arm2_3
+      (34,0)  -2.4794 ; j_arm2_4
+      (35,0)  -2.5394 ; j_arm2_5
+      (36,0)  -1.5154 ; j_arm2_6
+  }
+
+  upperBound
+  {
+      (0,0)  2.51  ; hip_yaw_1
+      (1,0)  2.02748   ; hip_pitch_1
+      (2,0)  2.3994   ; knee_pitch_1
+      (3,0)  2.3184   ; ankle_pitch_1
+      (4,0)  2.5384   ; ankle_yaw_1
+      (5,0)  100.0   ; j_wheel_1
+
+      (6,0)  2.03      ; hip_yaw_2
+      (7,0)  2.0354   ; hip_pitch_2
+      (8,0)  2.4034   ; knee_pitch_2
+      (9,0)  2.3914   ; ankle_pitch_2
+      (10,0) 2.5484   ; ankle_yaw_2
+      (11,0)  100.0   ; j_wheel_2
+
+      (12,0)  2.03      ; hip_yaw_3
+      (13,0)  2.0384   ; hip_pitch_3
+      (14,0)  2.4064   ; knee_pitch_3
+      (15,0)  0.301666   ; ankle_pitch_3
+      (16,0)  2.5454   ; ankle_yaw_3
+      (17,0)  100.0   ; j_wheel_3
+
+      (18,0)  2.51       ; hip_yaw_4
+      (19,0)  2.0524   ; hip_pitch_4
+      (20,0)  2.3884   ; knee_pitch_4
+      (21,0)  2.3934   ; ankle_pitch_4
+      (22,0)  2.5514   ; ankle_yaw_4
+      (23,0)  100.0   ; j_wheel_4
+
+      (24,0)  2.618 ; torso_yaw
+
+      (25,0)  1.615 ; j_arm1_1
+      (26,0)  3.431 ; j_arm1_2
+      (27,0)  2.566 ; j_arm1_3
+      (28,0)  0.280 ; j_arm1_4
+      (29,0)  2.562 ; j_arm1_5
+      (30,0)  1.509 ; j_arm1_6
+
+      (31,0)  1.6012  ; j_arm2_1
+      (32,0)  -0.0138 ; j_arm2_2
+      (33,0)  2.5606  ; j_arm2_3
+      (34,0)  0.2886  ; j_arm2_4
+      (35,0)  2.5546  ; j_arm2_5
+      (36,0)  1.5156  ; j_arm2_6
+  }
+}
+
+; Joint Velocity Limits
+jointVelocityLimits
+{
+    (0,0)  8.8   ; hip_yaw_1
+    (1,0)  8.8   ; hip_pitch_1
+    (2,0)  8.8   ; knee_pitch_1
+    (3,0)  8.1   ; ankle_pitch_1
+    (4,0)  20.0  ; ankle_yaw_1
+    (5,0)  20.0  ; j_wheel_1
+
+    (6,0)  8.8    ; hip_yaw_2
+    (7,0)  8.8   ; hip_pitch_2
+    (8,0)  8.8   ; knee_pitch_2
+    (9,0)  8.1   ; ankle_pitch_2
+    (10,0) 20.0  ; ankle_yaw_2
+    (11,0) 20.0  ; j_wheel_2
+
+    (12,0)  8.8    ; hip_yaw_3
+    (13,0)  8.8   ; hip_pitch_3
+    (14,0)  8.8   ; knee_pitch_3
+    (15,0)  8.1   ; ankle_pitch_3
+    (16,0)  20.0  ; ankle_yaw_3
+    (17,0)  20.0  ; j_wheel_3
+
+    (18,0)  8.8    ; hip_yaw_4
+    (19,0)  8.8   ; hip_pitch_4
+    (20,0)  8.8   ; knee_pitch_4
+    (21,0)  8.1   ; ankle_pitch_4
+    (22,0)  20.0  ; ankle_yaw_4
+    (23,0)  20.0  ; j_wheel_4
+
+    (24,0)  5.7 ; torso_yaw
+
+    (25,0)  3.86  ; j_arm1_1
+    (26,0)  3.86  ; j_arm1_2
+    (27,0)  6.06  ; j_arm1_3
+    (28,0)  6.06  ; j_arm1_4
+    (29,0)  11.72 ; j_arm1_5
+    (30,0)  11.72 ; j_arm1_6
+
+    (31,0)  3.86  ; j_arm2_1
+    (32,0)  3.86  ; j_arm2_2
+    (33,0)  6.06  ; j_arm2_3
+    (34,0)  6.06  ; j_arm2_4
+    (35,0)  11.72 ; j_arm2_5
+    (36,0)  11.72 ; j_arm2_6
+}
+
+; Joint Torque Limits
+jointTorqueLimits
+{
+    (0,0)  304.0   ; hip_yaw_1
+    (1,0)  304.0   ; hip_pitch_1
+    (2,0)  304.0   ; knee_pitch_1
+    (3,0)  147.0   ; ankle_pitch_1
+    (4,0)  35.0  ; ankle_yaw_1
+    (5,0)  35.0  ; j_wheel_1
+
+    (6,0)  304.0    ; hip_yaw_2
+    (7,0)  304.0   ; hip_pitch_2
+    (8,0)  304.0   ; knee_pitch_2
+    (9,0)  147.0   ; ankle_pitch_2
+    (10,0) 35.0  ; ankle_yaw_2
+    (11,0) 35.0  ; j_wheel_2
+
+    (12,0)  304.0    ; hip_yaw_3
+    (13,0)  304.0   ; hip_pitch_3
+    (14,0)  304.0   ; knee_pitch_3
+    (15,0)  147.0   ; ankle_pitch_3
+    (16,0)  35.0  ; ankle_yaw_3
+    (17,0)  35.0  ; j_wheel_3
+
+    (18,0)  304.0    ; hip_yaw_4
+    (19,0)  304.0   ; hip_pitch_4
+    (20,0)  304.0   ; knee_pitch_4
+    (21,0)  147.0   ; ankle_pitch_4
+    (22,0)  35.0  ; ankle_yaw_4
+    (23,0)  35.0  ; j_wheel_4
+
+    (24,0)  147.0 ; torso_yaw
+
+    (25,0)  147.0  ; j_arm1_1
+    (26,0)  147.0  ; j_arm1_2
+    (27,0)  147.0  ; j_arm1_3
+    (28,0)  147.0  ; j_arm1_4
+    (29,0)  55.0   ; j_arm1_5
+    (30,0)  55.0   ; j_arm1_6
+
+    (31,0)  147.0  ; j_arm2_1
+    (32,0)  147.0  ; j_arm2_2
+    (33,0)  147.0  ; j_arm2_3
+    (34,0)  147.0  ; j_arm2_4
+    (35,0)  55.0   ; j_arm2_5
+    (36,0)  55.0   ; j_arm2_6
+}

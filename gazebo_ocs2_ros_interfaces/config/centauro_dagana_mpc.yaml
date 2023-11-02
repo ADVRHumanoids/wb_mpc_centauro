@@ -1,0 +1,60 @@
+XBotInterface:
+  urdf_path: $(rospack find centauro_urdf)/urdf/centauro_dagana.urdf
+  srdf_path: $(rospack find centauro_srdf)/srdf/centauro.srdf
+
+ModelInterface:
+  model_type: "RBDL"
+  is_model_floating_base: "true"
+
+
+# hal
+xbotcore_device_configs:
+    sim: $(rospack find centauro_config)/hal/centauro_gz.yaml
+    dummy: $(rospack find centauro_config)/hal/centauro_dummy.yaml
+
+
+# threads
+xbotcore_threads:
+    rt_main:  {sched: fifo , prio: 60, period: 0.001}
+    nrt_main: {sched: other, prio: 0 , period: 0.001}
+    nrt_mpc: {sched: other, prio: 0 , period: 0.001}
+
+
+# plugins
+xbotcore_plugins:
+
+    homing:
+        thread: rt_main
+        type: homing
+        
+#    mrt_plugin:
+#        thread: nrt_mpc
+#        type: mrt_plugin
+
+    ros_io:
+      thread: nrt_main
+      type: ros_io
+      params:
+        publish_tf: 
+          value: true
+          type: bool
+
+    ros_control: {thread: nrt_main, type: ros_control, params: {autostart: {type: bool, value: true},
+    								  #joint_mask: {
+								#	type: map<int>,
+								#	value: {
+								#	    j_wheel_1: 2, 
+								#	    j_wheel_2: 2,
+								#	    j_wheel_3: 2,
+								#	    j_wheel_4: 2}}
+									    }}
+							    
+
+
+# global parameters
+xbotcore_param:
+    /xbot/hal/joint_safety/filter_autostart: {value: true, type: bool}
+    /xbot/hal/joint_safety/filter_cutoff_hz: {value: 2.0, type: double}
+    /xbot/hal/enable_safety: {value: true, type: bool}
+    # /xbot_internal/ros_io/call_timeout: {value: 1.0, type: chrono}
+    # /rt_main/memory_hooks: {value: true, type: bool}

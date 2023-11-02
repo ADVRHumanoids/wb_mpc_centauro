@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <arg name="pub_box_data" default="false"/>    
+    <arg name="pub_table_data" default="false"/>   
+    <arg name="t_pose_x" default="1.6"/>
+    <arg name="t_pose_y" default="0"/>
+    <arg name="t_pose_z" default="0"/>
+    <arg name="t_high" default="0.8"/>
+    <arg name="b_dim_x" default="0.3"/>
+    <arg name="b_dim_y" default="0.3"/>
+    <arg name="b_dim_z" default="0.3"/>
+    <arg name="b_rel_pose_x" default="-0.324" />
+    <arg name="b_rel_pose_y" default="0.0" />
+    <!--arg name="container_dim_x" value="0.2"/>
+    <arg name="container_dim_y" value="0.12"/>
+    <arg name="container_dim_z" value="0.06"/>
+    <arg name="container_mass" value="1"/-->
+    <arg name="b_mass" default="0.1"/>
+    <arg name="table_model_name" default="table"/>
+    <arg name="box_marker" default="true"/>
+    <arg name="table_marker" default="false"/>
+        
+    <!-- TABLE  -->  
+    <include file="$(find iit_gazebo_worlds_pkg)/table/launch/load_table.launch">
+        <arg name="table_name" value="$(arg table_model_name)"/>
+        <arg name="pub_tf" value="false"/>
+        <arg name="pub_world_pose" value="false"/>
+        <arg name="t_pose_x" value="$(arg t_pose_x)"/>
+        <arg name="t_pose_y" value="$(arg t_pose_y)"/>
+        <arg name="t_pose_z" value="$(arg t_pose_z)"/>
+        <arg name="surface_high" value="$(arg t_high)"/>
+        <arg name="surface_gazebo_color" value="Gazebo/Gold"/>
+        <arg name="markers" value="$(arg table_marker)"/>
+        <arg name="surface_size_x" default="0.5"/>
+    	<arg name="surface_size_y" default="0.2"/>
+    	<arg name="surface_size_z" default="0.03"/>
+    </include>
+
+    <!-- CUBES on table  -->
+    
+    <include file="$(find iit_gazebo_worlds_pkg)/arucoBoxes/launch/loaders/load_box.launch">
+        <arg name="name" value="box2"/>
+        <arg name="pose_x" value="$(eval t_pose_x + b_rel_pose_x)" />
+        <arg name="pose_y" value="$(eval t_pose_y + b_rel_pose_y)" />
+        <arg name="pose_z" value="$(eval t_high + b_dim_z/2 + 0.01)" />
+        <arg name="pub_box_data" value="$(arg pub_box_data)"/>    
+        <arg name="dim_x" value="$(arg b_dim_x)"/>
+        <arg name="dim_y" value="$(arg b_dim_y)"/>
+        <arg name="dim_z" value="$(arg b_dim_z)"/>
+        <arg name="mass" value="$(arg b_mass)"/>
+        <arg name="table_model_name" value="$(arg table_model_name)"/>
+        <arg name="markers" value="$(arg box_marker)"/>
+        <arg name="gazebo_color" value="Gazebo/ZincYellow"/>
+        <arg name="red" value="1"/>
+        <arg name="green" value="1"/>
+        <arg name="blue" value="0"/>
+        <arg name="alfa" value="1"/>
+        <arg name="kp" value="1000000"/>
+        <arg name="kd" value="1"/>
+    </include>
+    
+<!--    <arg name="xacroContainer" value="$(find iit_gazebo_worlds_pkg)/arucoBoxes/urdf/container.urdf.xacro
+           container_name:=container
+           mass:=$(arg container_mass) size_x:=$(arg container_dim_x) size_y:=$(arg container_dim_y) size_z:=$(arg container_dim_z) r:=1 g:=1 b:=0 a:=1 gazebo_color:=Gazebo/White
+           pose_x:=0 pose_y:=0 pose_z:=0
+           kp:=1000000 kd:=1" />
+    <param name="gazebo/container_description" command="$(find xacro)/xacro $(arg xacroContainer)" />
+    <include file="$(find iit_gazebo_worlds_pkg)/arucoBoxes/launch/loaders/load_container.launch">
+        <arg name="name" value="container"/>
+        <arg name="pose_x" value="$(eval t_pose_x - 0.1)" />
+        <arg name="pose_y" value="$(eval t_pose_y - 0.6)" />
+        <arg name="pose_z" value="$(eval t_high + container_dim_z/2 + 0.01)" />
+        <arg name="dim_x" value="$(arg container_dim_x)"/>
+        <arg name="dim_y" value="$(arg container_dim_y)"/>
+        <arg name="dim_z" value="$(arg container_dim_z)"/>
+        <arg name="mass" value="$(arg container_mass)"/>
+        <arg name="table_model_name" value="$(arg table_model_name)"/>
+    </include>-->
+    
+        <!-- unique node for this is better, so we put pub_xxx_data to false above -->
+    <COMMENT>
+    	<node name="box_pose_gazebo_to_tf" pkg="iit_gazebo_worlds_pkg" type="pose_gazebo_to_tf.py" output="screen" 
+          args="--reference world --models $(arg table_model_name) box2 container --models_link surface box1 box2 container --ignore_roslaunch_added_param" />
+    </COMMENT>
+    
+</launch>

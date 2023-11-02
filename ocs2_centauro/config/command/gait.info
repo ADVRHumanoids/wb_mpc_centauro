@@ -1,0 +1,631 @@
+list
+{
+  [0] stance
+  [1] trot
+  [2] standing_trot
+  [3] flying_trot
+  [4] pace
+  [5] standing_pace
+  [6] dynamic_walk
+  [7] static_walk
+  [8] amble
+  [9] lindyhop
+  [10] skipping
+  [11] pawup
+  [12] centauro_walk
+  [13] centauro_slow_walk
+  [14] centauro_inverse_walk
+  [15] locomanipulation
+  [16] locoma_lf        ; locoma_leg_name means all arm and leg ee in contact apart from leg_name
+  [17] locoma_rf
+  [18] locoma_lh
+  [19] locoma_rh
+
+  [20] locoma_lf_rf
+  [21] locoma_lf_lh
+  [22] locoma_lf_rh
+
+  [23] locoma_rf_lh
+  [24] locoma_rf_rh
+  [25] locoma_lh_rh
+
+  [26] la_locoma        ; arm_name_locoma means only the arm_name arm ee is in contact
+
+  [27] crawl05
+  [28] standing_crawl
+  [29] la_push
+  [30] locoma_standing_trot
+  [31] locoma_standing_crawl
+}
+
+; std::vector<scalar_t> switchingTimes;
+; Defined as [t_0=0, t_1, .., t_n, t_(n+1)=T], where T is the overall duration
+; of the template logic. t_1 to t_n are the event moments.
+;
+
+; std::vector<size_t> modeSequence;
+; Defined as [sys_0, sys_n], are the switching systems IDs. Here sys_i is
+; active in period [t_i, t_(i+1)]
+
+stance
+ {
+   modeSequence
+   {
+     [0]     STANCE
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     0.5
+   }
+}
+
+trot
+ {
+   modeSequence
+   {
+     [0]     LF_RH
+     [1]     RF_LH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     0.35
+     [2]     0.70
+   }
+}
+
+standing_trot
+{
+  modeSequence
+  {
+    [0]     LF_RH
+    [1]     STANCE
+    [2]     RF_LH
+    [3]     STANCE
+  }
+  switchingTimes
+  {
+    [0]     0.00
+    [1]     0.30
+    [2]     0.40
+    [3]     0.70
+    [4]     0.80
+  }
+}
+
+locoma_standing_trot
+{
+  modeSequence
+  {
+    [0]     LA_RA_LF_RH
+    [1]     LA_RA_STANCE
+    [2]     LA_RA_RF_LH
+    [3]     LA_RA_STANCE
+  }
+  switchingTimes
+  {
+    [0]     0.00
+    [1]     0.30
+    [2]     0.40
+    [3]     0.70
+    [4]     0.80
+  }
+}
+
+locoma_standing_crawl
+{
+  modeSequence
+  {
+    [0]     LA_RA_LF_RF_RH
+    [1]     LA_RA_STANCE
+    [2]     LA_RA_RF_LH_RH
+    [3]     LA_RA_STANCE
+    [4]     LA_RA_LF_RF_LH
+    [5]     LA_RA_STANCE
+    [6]     LA_RA_LF_LH_RH
+    [7]     LA_RA_STANCE
+  }
+  switchingTimes
+  {
+    [0]     0.0
+    [1]     0.3
+    [2]     0.4
+    [3]     0.7
+    [4]     0.8
+    [5]     1.1
+    [6]     1.2
+    [7]     1.5
+    [8]     1.6
+  }
+}
+
+flying_trot
+{
+  modeSequence
+  {
+    [0]     LF_RH
+    [1]     FLY
+    [2]     RF_LH
+    [3]     FLY
+  }
+  switchingTimes
+  {
+    [0]     0.00
+    [1]     0.27
+    [2]     0.30
+    [3]     0.57
+    [4]     0.60
+  }
+}
+
+pace
+{
+  modeSequence
+  {
+    [0]     LF_LH
+    [1]     FLY
+    [2]     RF_RH
+    [3]     FLY
+  }
+  switchingTimes
+  {
+    [0]     0.0
+    [1]     0.28
+    [2]     0.30
+    [3]     0.58
+    [4]     0.60
+  }
+}
+
+standing_pace
+{
+  modeSequence
+  {
+    [0]     LF_LH
+    [1]     STANCE
+    [2]     RF_RH
+    [3]     STANCE
+  }
+  switchingTimes
+  {
+    [0]     0.0
+    [1]     0.30
+    [2]     0.35
+    [3]     0.65
+    [4]     0.70
+  }
+}
+
+dynamic_walk
+{
+  modeSequence
+  {
+    [0]     LF_RF_RH
+    [1]     RF_RH
+    [2]     RF_LH_RH
+    [3]     LF_RF_LH
+    [4]     LF_LH
+    [5]     LF_LH_RH
+  }
+  switchingTimes
+  {
+    [0]     0.0
+    [1]     0.2
+    [2]     0.3
+    [3]     0.5
+    [4]     0.7
+    [5]     0.8
+    [6]     1.0
+  }
+}
+
+centauro_walk
+{
+  modeSequence
+  {
+    [0]     LF_RF_RH
+    [1]     STANCE
+    [2]     RF_LH_RH
+    [3]     STANCE
+    [4]     LF_RF_LH
+    [5]     STANCE
+    [6]     LF_LH_RH
+    [7]     STANCE
+  }
+  switchingTimes
+  {
+      [0]     0.0
+      [1]     1.2
+      [2]     2.0
+      [3]     3.2
+      [4]     4.0
+      [5]     5.2
+      [6]     6.0
+      [7]     7.2
+      [8]     8.0
+  }
+}
+
+centauro_inverse_walk
+{
+  modeSequence
+  {
+    [0]     LF_RF_LH
+    [1]     STANCE
+    [2]     LF_LH_RH
+    [3]     STANCE
+    [4]     LF_RF_RH
+    [5]     STANCE
+    [6]     RF_LH_RH
+    [7]     STANCE
+  }
+  switchingTimes
+  {
+      [0]     0.0
+      [1]     1.2
+      [2]     2.0
+      [3]     3.2
+      [4]     4.0
+      [5]     5.2
+      [6]     6.0
+      [7]     7.2
+      [8]     8.0
+  }
+}
+
+centauro_slow_walk
+{
+  modeSequence
+  {
+    [0]     LF_RF_RH
+    [1]     STANCE
+    [2]     RF_LH_RH
+    [3]     STANCE
+    [4]     LF_RF_LH
+    [5]     STANCE
+    [6]     LF_LH_RH
+    [7]     STANCE
+  }
+  switchingTimes
+  {
+      [0]     0.0
+      [1]     2.0
+      [2]     3.0
+      [3]     5.0
+      [4]     6.0
+      [5]     8.0
+      [6]     9.0
+      [7]     11.0
+      [8]     12.0
+  }
+}
+
+locomanipulation
+{
+   modeSequence
+   {
+     [0]     LA_RA_STANCE
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_lf
+{
+   modeSequence
+   {
+     [0]     LA_RA_RF_LH_RH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_lh
+{
+   modeSequence
+   {
+     [0]     LA_RA_LF_RF_RH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+locoma_rh
+{
+   modeSequence
+   {
+     [0]     LA_RA_LF_RF_LH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_rf
+{
+   modeSequence
+   {
+     [0]     LA_RA_LF_LH_RH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_lf_rf
+{
+   modeSequence
+   {
+     [0]     LA_RA_LH_RH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_lf_lh
+{
+   modeSequence
+   {
+     [0]     LA_RA_RF_RH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_lf_rh
+{
+   modeSequence
+   {
+     [0]     LA_RA_RF_LH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_rf_lh
+{
+   modeSequence
+   {
+     [0]     LA_RA_LF_RH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_rf_rh
+{
+   modeSequence
+   {
+     [0]     LA_RA_LF_LH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+locoma_lh_rh
+{
+   modeSequence
+   {
+     [0]     LA_RA_LF_RF
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+la_locoma
+{
+   modeSequence
+   {
+     [0]     LA_STANCE
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}
+
+la_push
+{
+   modeSequence
+   {
+     [0]     LA_STANCE
+     [1]     STANCE
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     1.0
+     [2]     200.0
+   }
+}
+
+static_walk
+{
+  modeSequence
+  {
+    [0]     LF_RF_RH
+    [1]     RF_LH_RH
+    [2]     LF_RF_LH
+    [3]     LF_LH_RH
+  }
+  switchingTimes
+  {
+    [0]     0.0
+    [1]     0.3
+    [2]     0.6
+    [3]     0.9
+    [4]     1.2
+  }
+}
+
+crawl05
+{
+  modeSequence
+  {
+    [0]     LF_RF_RH
+    [1]     RF_LH_RH
+    [2]     LF_RF_LH
+    [3]     LF_LH_RH
+  }
+  switchingTimes
+  {
+    [0]     0.0
+    [1]     0.5
+    [2]     1.0
+    [3]     1.5
+    [4]     2.0
+  }
+}
+
+standing_crawl
+{
+  modeSequence
+  {
+    [0]     LF_RF_RH
+    [1]     STANCE
+    [2]     RF_LH_RH
+    [3]     STANCE
+    [4]     LF_RF_LH
+    [5]     STANCE
+    [6]     LF_LH_RH
+    [7]     STANCE
+  }
+  switchingTimes
+  {
+  [0]     0.0
+  [1]     0.5
+  [2]     0.6
+  [3]     1.1
+  [4]     1.2
+  [5]     1.7
+  [6]     1.8
+  [7]     2.3
+  [8]     2.4
+  }
+}
+
+amble
+{
+  modeSequence
+  {
+    [0]     RF_LH
+    [1]     LF_LH
+    [2]     LF_RH
+    [3]     RF_RH
+  }
+  switchingTimes
+  {
+    [0]     0.0
+    [1]     0.15
+    [2]     0.40
+    [3]     0.55
+    [4]     0.80
+  }
+}
+
+lindyhop
+{
+  modeSequence
+  {
+    [0]     LF_RH
+    [1]     STANCE
+    [2]     RF_LH
+    [3]     STANCE
+    [4]     LF_LH
+    [5]     RF_RH
+    [6]     LF_LH
+    [7]     STANCE
+    [8]     RF_RH
+    [9]     LF_LH
+    [10]     RF_RH
+    [11]     STANCE
+  }
+  switchingTimes
+  {
+    [0]     0.00 ; Step 1
+    [1]     0.35 ; Stance
+    [2]     0.45 ; Step 2
+    [3]     0.80 ; Stance
+    [4]     0.90  ; Tripple step
+    [5]     1.125 ;
+    [6]     1.35  ;
+    [7]     1.70  ; Stance
+    [8]     1.80  ; Tripple step
+    [9]     2.025 ;
+    [10]    2.25  ;
+    [11]    2.60  ; Stance
+    [12]    2.70  ;
+  }
+}
+
+skipping
+{
+  modeSequence
+  {
+    [0]     LF_RH
+    [1]     FLY
+    [2]     LF_RH
+    [3]     FLY
+    [4]     RF_LH
+    [5]     FLY
+    [6]     RF_LH
+    [7]     FLY
+  }
+  switchingTimes
+  {
+    [0]     0.00
+    [1]     0.27
+    [2]     0.30
+    [3]     0.57
+    [4]     0.60
+    [5]     0.87
+    [6]     0.90
+    [7]     1.17
+    [8]     1.20
+  }
+}
+
+pawup
+{
+   modeSequence
+   {
+     [0]     RF_LH_RH
+   }
+   switchingTimes
+   {
+     [0]     0.0
+     [1]     2.0
+   }
+}

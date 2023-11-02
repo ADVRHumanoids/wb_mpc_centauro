@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<launch>
+  <arg name="bags_directory" 		default="~/ioannis_logs/ocs2/"/>
+  <arg name="record_all" 		default="False"/>
+  
+  <!-- publish torque terms of command -->
+ <node pkg="yiannis_centauro_pytools" type="xbot_torque_terms.py" name="xbot_torque_terms_publisher"/>
+
+ <!-- rosbag record all topics -->
+  <node if="$(arg record_all)" pkg="rosbag" type="record" name="rosbag_record_all"
+       args="record -a -o $(arg bags_directory)/all"/>
+
+ <node pkg="rosbag" type="record" name="rosbag_record_mpc"
+       args="record -o $(arg bags_directory)/mpc -e '(.*)legged_robot_mpc(.*)' "/>
+       
+  <node pkg="rosbag" type="record" name="rosbag_record_rviz" args="record -o $(arg bags_directory)/rviz  -e '(.*)legged_robot/(.*)' /tf /tf_static /distance_markers"/>
+  
+  
+  <node pkg="rosbag" type="record" name="rosbag_record_xbotcore" 
+        args="record -o $(arg bags_directory)/xbotcore /xbotcore/joint_states /xbotcore/command /xbotcore/imu/imu_link /xbotcore/command/torque_terms"/>
+  
+  <node pkg="rosbag" type="record" name="rosbag_record_base_est" 
+      args="record -o $(arg bags_directory)/base_est -e '(.*)centauro_base_estimation(.*)' "/>
+</launch>

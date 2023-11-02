@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+
+<launch>
+    <!-- visualization config -->
+    <arg name="rviz"               default="true" />
+    <arg name="global_frame"        default="odometry/world" />
+    <arg name="description_name"   default="legged_robot_description"/>
+    <arg name="multiplot"          default="false"/>
+
+    <!-- further flags -->
+    <arg name="gdb"                default="false"/>
+    <arg name="xbot_plugin"        default="false"/>
+    <arg name="task"      	    default="task"/>		<!-- with arm EEs soft constrained -->
+    <arg name="base_estimation"    default="true"/>		
+
+    <!-- dagana gripper argument -->
+    <arg name="gripper"   default="dagana"/>
+    
+    <!-- The task file for the mpc. -->
+    <arg name="taskFile"          default="$(find ocs2_centauro)/config/mpc/centauro_$(arg task).info"/>
+    <!-- The reference related config file of the robot -->
+    <arg name="referenceFile"     default="$(find ocs2_centauro)/config/command/centauro_reference.info"/>
+    <!-- The URDF model of the robot -->
+    <arg if="$(eval arg('gripper') == 'ball')"   name="urdfFile"   default="$(find ocs2_robotic_assets)/resources/centauro/urdf/centauro_horizon.urdf"/>
+    <arg if="$(eval arg('gripper') == 'dagana')" name="urdfFile"   default="$(find ocs2_robotic_assets)/resources/centauro/urdf/centauro_$(arg gripper).urdf"/>
+    
+    <!-- The file defining gait definition -->
+    <arg name="gaitCommandFile"   default="$(find ocs2_centauro)/config/command/gait.info"/>
+    
+    <!-- Load impedance gains for joints to be used for controlling the robot -->
+    <rosparam param="mrt_joint_impedance_gains" command="load" file="$(find ocs2_centauro)/config/control/impedance_gains_control.yaml"/>
+
+    <!-- rviz -->
+    <group if="$(arg rviz)">
+      <param name="$(arg description_name)" textfile="$(arg urdfFile)"/>
+      <arg name="rvizconfig" default="$(find ocs2_centauro_ros)/rviz/legged_robot.rviz" />
+      <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rvizconfig)" output="screen" />
+    </group>
+
+    <!-- visualization nodes receive this frame -->
+    <param name="global_frame"   value="$(arg global_frame)"/>
+
+    <!-- multiplot -->
+    <group if="$(arg multiplot)">
+      <include file="$(find ocs2_centauro)/launch/multiplot.launch"/>
+    </group>
+
+    <!-- make the files into global parameters -->
+    <param name="taskFile"          value="$(arg taskFile)" />
+    <param name="referenceFile"     value="$(arg referenceFile)" />
+    <param name="urdfFile"          value="$(arg urdfFile)" />
+    <param name="gaitCommandFile"   value="$(arg gaitCommandFile)"/>
+
+    <!-- base estimation -->
+    <include file="$(find base_estimation)/launch/centauro_base_estimation.launch" if="$(arg base_estimation)">
+    	<arg name="launch-prefix" value="gnome-terminal --"/>
+    </include>
+
+    <!-- run the dummy node if you don't want to run it as a xbot plugin -->
+    <group unless="$(arg xbot_plugin)">
+        <group if="$(arg gdb)">
+            <node pkg="ocs2_centauro_ros" type="legged_robot_dummy" name="legged_robot_dummy"
+                  output="screen" launch-prefix="gnome-terminal -- gdb -e run --args"/>
+            
+            <node pkg="ocs2_centauro_ros" type="centauro_ddp_mpc" name="legged_robot_ddp_mpc"
+          	   output="screen" launch-prefix="gnome-terminal -- gdb -e run --args"/>
+        </group>
+        <group unless="$(arg gdb)">
+            <node pkg="ocs2_centauro_ros" type="legged_robot_dummy" name="legged_robot_dummy"
+                  output="screen" launch-prefix="gnome-terminal --"/>
+            <node pkg="ocs2_centauro_ros" type="centauro_ddp_mpc" name="legged_robot_ddp_mpc"
+          	   output="screen" launch-prefix=""/>
+        </group>
+    </group>
+
+    <node pkg="ocs2_centauro_ros" type="legged_robot_target" name="legged_robot_target"
+        output="screen" launch-prefix="gnome-terminal --"/>
+
+    <node pkg="ocs2_centauro_ros" type="legged_robot_gait_command" name="legged_robot_gait_command"
+          output="screen" launch-prefix="gnome-terminal --"/>
+          
+    <!-- add node for arm ee targets -->
+    <!-- select interactive marker for dagana tcp or ball center -->
+    <arg name="frame_name2"   default="arm2_8"/>
+    <arg if="$(eval (arg('gripper') == 'dagana'))"   name="frame_name2"   value="dagana_2_tcp"/>
+    
+    <node if="$(arg rviz)" pkg="ocs2_centauro_ros" type="legged_robot_arm_target" name="legged_robot_arm_target1" output="screen" launch-prefix="">
+	<param name="frame_name" value="arm1_8"/>
+    </node>
+    <node if="$(arg rviz)" pkg="ocs2_centauro_ros" type="legged_robot_arm_target" name="legged_robot_arm_target2" output="screen" launch-prefix="">
+	<param name="frame_name" value="$(arg frame_name2)"/>
+    </node>
+
+    <!-- publish world identical to odom since it is needed from interactive arm target -->
+    <!--node pkg="tf2_ros" type="static_transform_publisher" name="world_broadcast" args="0.0 0.0 0.0 0 0 0 1 world odom" /-->
+</launch>
