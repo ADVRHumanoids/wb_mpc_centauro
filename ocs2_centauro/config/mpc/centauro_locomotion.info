@@ -1,4 +1,4 @@
-centroidalModelType             0      // 0: FullCentroidalDynamics, 1: Single Rigid Body Dynamics
+centroidalModelType             1      // 0: FullCentroidalDynamics, 1: Single Rigid Body Dynamics
 
 legged_robot_interface
 {
@@ -14,8 +14,8 @@ model_settings
 
   verboseCppAd                  true
   recompileLibrariesCppAd       false
-  modelFolderCppAd              ../../../auto_generated/locomotion/centroidal
-  ; modelFolderCppAd              /tmp/ocs2/locomotion
+  ; modelFolderCppAd              ../../../auto_generated/locomotion/centroidal
+  modelFolderCppAd              /tmp/ocs2/locomotion
 }
 
 swing_trajectory_config
@@ -146,7 +146,7 @@ mpc
 
 xbotcore
 {
-  xbotCoreRunning                     true                ; true if xbotcore is running so that initialState is received from there
+  xbotCoreRunning                     false                ; true if xbotcore is running so that initialState is received from there
   xbotCoreFeedback                    true                ; true if it is to receive feedback from xbotcore
 
   ; topic prefix to receive base pose and twist ;
