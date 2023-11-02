@@ -55,9 +55,10 @@ This repository includes the implementation of various costs and constraints tha
 ## Running the examples
 After having installed everything you can just run the following launch file.
 
-`roslaunch ocs2_centauro_ros centauro_ddp.launch`
+`roslaunch ocs2_centauro_ros centauro_ddp.launch` or
+`roslaunch ocs2_centauro_ros centauro_ddp.launch task:=locomotion`
 
-The terminal argument `task` can be defined so as to include a specific task-related `.info` file (some of which are already there, e.g. `centauro_locomotion.info`, `centauro_task_soft.info`, `centauro_task.info` etc.). If the robot has to be run only in rviz (using the model in the MPC as rollout instance) set `xbotCoreRunning false` in the task file. If you want to deploy the MPC with the robot in gazebo or the real robot then first make sure the robot (real or simulated) is on a nominal configuration (e.g. standing in homing configuration) before launching the MPC. In the taskfile set `xbotCoreRunning true` and `xbotCoreFeedback true` (for sending the mpc output to xbotcore and receiving the state observation, respectively).
+After waiting some time for generating the necessary files with automatic differentation you should be able to see the robot on RViz. The terminal argument `task` can be defined so as to include a specific task-related `.info` file (some of which are already there, e.g. `centauro_locomotion.info`, `centauro_task_soft.info`, `centauro_task.info` etc.). If the robot has to be run only in rviz (using the model in the MPC as rollout instance) set `xbotCoreRunning false` in the task file. If you want to deploy the MPC with the robot in gazebo or the real robot then first make sure the robot (real or simulated) is on a nominal configuration (e.g. standing in homing configuration) before launching the MPC. In the taskfile set `xbotCoreRunning true` and `xbotCoreFeedback true` (for sending the mpc output to xbotcore and receiving the state observation, respectively).
 <p float="left">
   <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/a42ab881-14ad-4032-b5e8-9baf73fa3094" alt="relax_example" width="420" height="300">
 </p>
