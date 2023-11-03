@@ -21,9 +21,7 @@ This repo implements Model Predictive Control (MPC) on CENTAURO, which is a dual
 - **real-time performance**: since the formulations have been tested and achieve replanning frequencies at tens of Hz on the CENTAURO robot, which consists of 37 actuated joints.
 
 <p float="left">
-  <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/0fdc0951-a75d-40ed-811c-2cfc36067e56" alt="relax_example" width="380" height="240">
-  <img width="1" />
-  <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/5230963e-232b-4787-8eae-38cb544504c2" alt="relax_example" width="380" height="240">
+  <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/c2326436-ad7a-44ae-879c-329d0a114ded" alt="relax_example" width="760" height="280">
 </p>
 
 ## Software Overview
