@@ -12,7 +12,7 @@ This repo implements the whole-body MPC presented in the following publication: 
       primaryClass={cs.RO}
 }
 ```
-paper: https://arxiv.org/abs/2310.02907 <br />
+paper: https://ieeexplore.ieee.org/document/10375215 (or open source https://arxiv.org/abs/2310.02907) <br />
 Video: https://youtu.be/8XIAtw4201o     <br />
 
 ## Introduction
