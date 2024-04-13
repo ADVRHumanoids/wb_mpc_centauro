@@ -1,28 +1,18 @@
-# wb_mpc_centauro
-This repo implements the whole-body MPC presented in the following publication: <br />
-*I. Dadiotis, A. Laurenzi, N. Tsagarakis*
-**"Whole-body MPC for highly redundant legged manipulators: experimental evaluation with a 37 DoF dual-arm quadruped" in 2023 IEEE-RAS International Conference on Humanoid Robots (Humanoids)**
-```
-@misc{dadiotis2023wholebody,
-      title={Whole-body MPC for highly redundant legged manipulators: experimental evaluation with a 37 DoF dual-arm quadruped}, 
-      author={Ioannis Dadiotis and Arturo Laurenzi and Nikos Tsagarakis},
-      year={2023},
-      eprint={2310.02907},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}
-}
-```
-paper: https://ieeexplore.ieee.org/document/10375215 (or open source https://arxiv.org/abs/2310.02907) <br />
-Video: https://youtu.be/8XIAtw4201o     <br />
+# wb_mpc_centauro :
+Whole-body MPC for highly redundant legged manipulators: experimental evaluation with a 37 DoF dual-arm quadruped
+<p align="center">
+  <a href="https://arxiv.org/abs/2310.02907">paper</a> •
+  <a href="https://youtu.be/8XIAtw4201o">video</a> •
+  <a href="#Citingthework">bibTeX</a>
+</p>
+<p float="left">
+  <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/c2326436-ad7a-44ae-879c-329d0a114ded" alt="relax_example" width="760" height="280">
+</p>
 
 ## Introduction
 This repo implements Model Predictive Control (MPC) on CENTAURO, which is a dual-arm quadrupedal legged manipulator. The focus is on achieving:
 - **whole-body motion generation**: since the full kinematics of the robot is optimized within the MPC formulation. A dynamics model is as well considered (SRBD or full centroidal) permitting to generate dynamically feasible motions.
 - **real-time performance**: since the formulations have been tested and achieve replanning frequencies at tens of Hz on the CENTAURO robot, which consists of 37 actuated joints.
-
-<p float="left">
-  <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/c2326436-ad7a-44ae-879c-329d0a114ded" alt="relax_example" width="760" height="280">
-</p>
 
 ## Software Overview
 The repository is based on the [ocs2](https://leggedrobotics.github.io/ocs2/index.html) library. Its structure follows the ocs2 examples (especially the legged robot example) and parts of the code have been taken from there. It is written in C++ and includes multiple `catkin` packages:
@@ -71,6 +61,21 @@ Deployment on the Gazebo simulator as well as on the real robot has been achieve
 **No instantaneous WBC** is used at the low-level since the MPC optimizes whole-body motions.
 
 <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/5c07d1e4-dab8-49a3-852f-6334b7c6a0c9" alt="relax_example" width="650" height="150">
+
+## <a name="Citingthework"></a>Citing the work
+This repo implements the whole-body MPC presented in the following publication: <br />
+*I. Dadiotis, A. Laurenzi, N. Tsagarakis*
+**"Whole-body MPC for highly redundant legged manipulators: experimental evaluation with a 37 DoF dual-arm quadruped" in 2023 IEEE-RAS International Conference on Humanoid Robots (Humanoids)**
+```
+@inproceedings{dadiotis2023whole,
+  title={Whole-body MPC for highly redundant legged manipulators: experimental evaluation with a 37 DoF dual-arm quadruped},
+  author={Dadiotis, Ioannis and Laurenzi, Arturo and Tsagarakis, Nikos},
+  booktitle={2023 IEEE-RAS 22nd International Conference on Humanoid Robots (Humanoids)},
+  pages={1--8},
+  year={2023},
+  organization={IEEE}
+}
+```
 
 ## LICENSE & ACKNOWLEDGEMENTS
 The repo includes the BSD 3 license. The repo has been built following the structure of the examples of ocs2 library. Credits to the ocs2 authors are acknowledged in files that have been taken from there with little or no modifications.
