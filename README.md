@@ -1,4 +1,4 @@
-# wb_mpc_centauro :
+# wb_mpc_centauro
 Whole-body MPC for highly redundant legged manipulators: experimental evaluation with a 37 DoF dual-arm quadruped
 <p align="center">
   <a href="https://arxiv.org/abs/2310.02907">paper</a> •
