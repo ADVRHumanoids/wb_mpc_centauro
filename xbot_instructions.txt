@@ -1,0 +1,19 @@
+If you want to deploy the mpc on a xbotcore2-powered robot there are specific thing you should take care of:
+
+- The xbot2 configuration can affect the deployment, in particular the frequency at which xbotcore is running.
+You can see which config you are using by doing `get_xbot2_config` on a terminal. We suggest first using one 
+of the configs in folder gazebo_ocs2_ros_interfaces/config which where used for all the experiments, e.g.
+centauro_dagana_mpc.yaml. You can set this by doing `set_xbot2_config centauro_dagana_mpc.yaml` on a terminal.
+
+- Every time you start the mpc you should make sure that xbotcore filtering is applied. This can be done by
+selecting the cutoff option at xbot2-gui. It should be "safe". This is necessary because some kind of smoothing
+is needed between the first mpc references and the previous ones at the joint level.
+
+- After having started the mpc you can change the cutoff to medium or fast. Indeed for very dynamic motions
+filtering can cause large delays on forwarding the references to the actuators. Therefore, make sure to select
+"fast" at the xbot2-gui after you have run the mpc and before sending the dynamic gait command.
+
+- Before deployment on hw we suggest first making sure the base estimation is working decently. For doing this
+run your base estimation algorithm and check that the robot state is correct. For centauro you can do this with
+`roslaunch base_estimation centauro_base_estimation.launch` and then opening rviz for visualizing wrt the
+`odometry/world` frame.
