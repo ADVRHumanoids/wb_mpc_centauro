@@ -23,13 +23,13 @@
   <depend>visualization_msgs</depend>
   <depend>geometry_msgs</depend>
   <depend>interactive_markers</depend>
-
+  
   <depend>xbot_msgs</depend>
   <depend>ocs2_pinocchio_interface</depend>
   <depend>ocs2_centroidal_model</depend>
   <depend>ocs2_centauro</depend>
   <depend>eigen_conversions</depend>
-
+  <depend>base_estimation</depend>
   <exec_depend>rqt_multiplot</exec_depend>
 
 </package>

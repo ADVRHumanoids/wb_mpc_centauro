@@ -4,6 +4,7 @@ project(gazebo_ocs2_ros_interfaces)
 set(CATKIN_PACKAGE_DEPENDENCIES
   roscpp
   ocs2_msgs
+  base_estimation
   ocs2_core
   ocs2_ddp
   ocs2_mpc
@@ -11,7 +12,6 @@ set(CATKIN_PACKAGE_DEPENDENCIES
   visualization_msgs
   geometry_msgs
   interactive_markers
-
   xbot_msgs
   ocs2_pinocchio_interface
   ocs2_centroidal_model

@@ -21,5 +21,5 @@
   <depend>ocs2_centroidal_model</depend>
   <depend>pinocchio</depend>
   <depend>ocs2_self_collision</depend>
-
+  <depend>base_estimation</depend>
 </package>
