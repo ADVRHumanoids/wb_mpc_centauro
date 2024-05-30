@@ -60,14 +60,14 @@
     <group unless="$(arg xbot_plugin)">
         <group if="$(arg gdb)">
             <node pkg="ocs2_centauro_ros" type="legged_robot_dummy" name="legged_robot_dummy"
-                  output="screen" launch-prefix="gnome-terminal -- gdb -e run --args" cwd="/"/>
+                  output="screen" launch-prefix="gnome-terminal -- gdb -e run --args"/>
             
             <node pkg="ocs2_centauro_ros" type="centauro_ddp_mpc" name="legged_robot_ddp_mpc"
-                   output="screen" launch-prefix="gnome-terminal -- gdb -e run --args" cwd="/"/>
+                   output="screen" launch-prefix="gnome-terminal -- gdb -e run --args"/>
         </group>
         <group unless="$(arg gdb)">
             <node pkg="ocs2_centauro_ros" type="legged_robot_dummy" name="legged_robot_dummy"
-                  output="screen" launch-prefix="gnome-terminal --" cwd="/"/>
+                  output="screen" launch-prefix="gnome-terminal --"/>
             <node pkg="ocs2_centauro_ros" type="centauro_ddp_mpc" name="legged_robot_ddp_mpc"
                    output="screen" launch-prefix=""/>
         </group>
@@ -81,7 +81,7 @@
           
     <!-- add node for arm ee targets -->
     <!-- select interactive marker for dagana tcp or ball center -->
-    <arg name="frame_name2"   default="arm2_8"/>
+    <arg if="$(eval (arg('gripper') != 'dagana'))"  name="frame_name2"   default="arm2_8"/>
     <arg if="$(eval (arg('gripper') == 'dagana'))"   name="frame_name2"   value="dagana_2_tcp"/>
     
     <node if="$(arg rviz)" pkg="ocs2_centauro_ros" type="legged_robot_arm_target" name="legged_robot_arm_target1" output="screen" launch-prefix="">
@@ -92,5 +92,6 @@
     </node>
 
     <!-- publish world identical to odom since it is needed from interactive arm target -->
-    <!--node pkg="tf2_ros" type="static_transform_publisher" name="world_broadcast" args="0.0 0.0 0.0 0 0 0 1 world odom" /-->
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="world_broadcast" args="0.0 0.0 0.0 0 0 0 1 world odom" /> -->
 </launch>
+
