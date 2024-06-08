@@ -6,7 +6,7 @@ Whole-body MPC for highly redundant legged manipulators: experimental evaluation
   <a href="#Citingthework">bibTeX</a>
 </p>
 <p float="left">
-  <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/c2326436-ad7a-44ae-879c-329d0a114ded" alt="relax_example" width="760" height="280">
+  <img src="https://github.com/IoannisDadiotis/ocs2_hhcm/assets/75118133/c2326436-ad7a-44ae-879c-329d0a114ded" alt="relax_example" width="745" height="275">
 </p>
 
 ## Introduction
@@ -27,6 +27,7 @@ Using the repository requires installing:
 - the package `xbot_msgs` and a xbot2 installation since this is the robotics middleware used for our robot (not necessary for visualization only in RViz). 
 - the urdf model of CENTAURO that is considered in the MPC and can be found [here](https://github.com/IoannisDadiotis/ocs2_robotic_assets). Additionally, the repo [`iit-centauro-ros-pkg`](https://github.com/ADVRHumanoids/iit-centauro-ros-pkg) may be needed since it contains the meshes of the robot for visualization.
 - the [`base_estimation`](https://github.com/ADVRHumanoids/base_estimation) package (branch `ioannis_centauro`) for estimating the floating base pose and twist of CENTAURO or any state estimation module that you prefer (not necessary for visualization only in RViz).
+- the following dependencies which are necessary for visualising the centauro urdf: [iit-dagana-ros-pkg](https://github.com/ADVRHumanoids/iit-dagana-ros-pkg), [realsense_gazebo_description](https://github.com/m-tartari/realsense_gazebo_description), [realsense_gazebo_plugin](https://github.com/m-tartari/realsense_gazebo_plugin), [velodyne_simulator](https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/).
 
 The code is tested in Ubuntu 20.04 with ros noetic. Ubuntu 18.04 and ros melodic has been tested as well in the past.
 
