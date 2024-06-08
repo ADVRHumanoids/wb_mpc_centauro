@@ -39,7 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <ocs2_pinocchio_interface/PinocchioInterface.h>
 #include <ocs2_robotic_tools/common/RobotInterface.h>
 #include <ocs2_robotic_tools/end_effector/EndEffectorKinematics.h>
-#include <ocs2_sqp/MultipleShootingSettings.h>
+#include <ocs2_sqp/SqpSettings.h>
 
 #include "ocs2_centauro/common/ModelSettings.h"
 #include "ocs2_centauro/initialization/LeggedRobotInitializer.h"
@@ -77,7 +77,7 @@ class LeggedRobotInterface : public RobotInterface {
   const ddp::Settings& ddpSettings() const { return ddpSettings_; }
   const mpc::Settings& mpcSettings() const { return mpcSettings_; }
   const rollout::Settings& rolloutSettings() const { return rolloutSettings_; }
-  const multiple_shooting::Settings& sqpSettings() { return sqpSettings_; }
+  const sqp::Settings& sqpSettings() { return sqpSettings_; }
 
   const vector_t& getInitialState() const { return initialState_; }
   void setInitialState(const vector_t& initialState) { initialState_ = initialState; }
@@ -123,7 +123,7 @@ class LeggedRobotInterface : public RobotInterface {
   ModelSettings modelSettings_;
   ddp::Settings ddpSettings_;
   mpc::Settings mpcSettings_;
-  multiple_shooting::Settings sqpSettings_;
+  sqp::Settings sqpSettings_;
 
   std::unique_ptr<PinocchioInterface> pinocchioInterfacePtr_;
   CentroidalModelInfo centroidalModelInfo_;
