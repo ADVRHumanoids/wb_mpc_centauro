@@ -1,0 +1,19 @@
+{
+  "name": "wb_mpc_centauro containerized",
+  "dockerFile": "Dockerfile",
+  "runArgs": [
+    "--privileged",
+    "--network=host",   // shared network with the host
+    "--ipc=host",       // shared memory with the host      
+    "-v=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+    "--env=DISPLAY"
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/src/${localWorkspaceFolderBasename},type=bind",
+  "workspaceFolder": "/workspace/src/${localWorkspaceFolderBasename}",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.bash_history,target=/home/vscode/.bash_history,type=bind"
+  ],
+  // build the catkin workspace, grab a coffee since this will take some time.
+  "postCreateCommand": "bash -c 'cd /workspace && catkin build ocs2 && catkin build'"
+
+}
