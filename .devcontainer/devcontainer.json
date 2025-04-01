@@ -1,9 +1,13 @@
 {
-  "name": "wb_mpc_centauro containerized",
+  "name": "wb_mpc_centauro containerized",        // name for ui of vscode
   "dockerFile": "Dockerfile",
+  "build": {
+    "options": ["-t=centauro_mpc_image:latest"],  // image name
+  },
   "runArgs": [
+    "--name=centauro_mpc_container",              // container name
     "--privileged",
-    "--network=host",   // shared network with the host
+    "--network=host",   // shared network with the host`
     "--ipc=host",       // shared memory with the host      
     "-v=/tmp/.X11-unix:/tmp/.X11-unix:rw",
     "--env=DISPLAY"
