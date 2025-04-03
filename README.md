@@ -37,7 +37,7 @@ If you have one of the supported Ubuntu OS (18.04 or 20.04) and ros distribution
 Notice that `catkin build` commands can take a lot of time! Make sure to run this when you have other things to do in parallel or take a coffee!!!
 
 ### Docker-based installation and deployment
-We provide the docker image needed to run everything inside a docker container using Ubuntu 20.04 and ros noetic. All the docker-related files are in the `.devcontainer` folder in this repo.
+We provide the docker image needed to run everything inside a docker container using Ubuntu 20.04 and ros noetic. All the docker-related files are in the `.devcontainer` folder in this repo. To start with, run `xhost +` in a terminal on your host, so that all users have access to X.
 
 **Deployment through terminal:** Inside the `.devcontainer` folder you can find three main scripts, `build.sh`, `run.sh`, `attach.sh`. Navigate to this folder and you can use them as follows from your terminal:
 
