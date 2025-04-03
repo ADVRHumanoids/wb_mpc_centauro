@@ -21,18 +21,35 @@ The repository is based on the [ocs2](https://leggedrobotics.github.io/ocs2/inde
 - `gazebo_ocs2_ros_interfaces` which implements an interface between the MPC and gazebo or the real hardware though ROS. The interface happens through *xbotcore* which is the middleware used for controlling CENTAURO.
 - `ocs2_centauro_references` which is a (python-based) package for sending task-related references once the mpc is up and running (e.g. a desired reference trajectory). For now, this is limited for setting up the tasks used in our corresponding publication.
 
-## Dependencies & System Requirements
-Using the repository requires installing:
-- ocs2 library (e.g. ocs_*) and their dependencies, e.g. Eigen, pinocchio, hpp-fcl. This repo is based on [this fork](https://github.com/IoannisDadiotis/ocs2).
-- the package `xbot_msgs` and a xbot2 installation since this is the robotics middleware used for our robot (not necessary for visualization only in RViz). 
-- the urdf model of CENTAURO that is considered in the MPC and can be found [here](https://github.com/IoannisDadiotis/ocs2_robotic_assets). Additionally, the repo [`iit-centauro-ros-pkg`](https://github.com/ADVRHumanoids/iit-centauro-ros-pkg) may be needed since it contains the meshes of the robot for visualization.
-- the [`base_estimation`](https://github.com/ADVRHumanoids/base_estimation) package (branch `ioannis_centauro`) for estimating the floating base pose and twist of CENTAURO or any state estimation module that you prefer (not necessary for visualization only in RViz).
-- the following dependencies which are necessary for visualising the centauro urdf: [iit-dagana-ros-pkg](https://github.com/ADVRHumanoids/iit-dagana-ros-pkg), [realsense_gazebo_description](https://github.com/m-tartari/realsense_gazebo_description), [realsense_gazebo_plugin](https://github.com/m-tartari/realsense_gazebo_plugin), [velodyne_simulator](https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/).
+## Installation & Building the Code
+If you have one of the supported Ubuntu OS (18.04 or 20.04) and ros distributions (melodic/noetic), you can install the install everything locally. Otherwise, you can use the framework by running everything in a docker container.
 
-The code is tested in Ubuntu 20.04 with ros noetic. Ubuntu 18.04 and ros melodic has been tested as well in the past.
+### Local installation
+- First create a catkin workspace and an `src/` folder inside the workspace. We are going to build the code in the workspace using [catkin tools](https://catkin-tools.readthedocs.io/en/latest/quick_start.html).
+- Clone [this fork](https://github.com/IoannisDadiotis/ocs2_robotic_assets) containing the assets, including CENTAURO robot, in the src folder.
+- Clone [this fork](https://github.com/IoannisDadiotis/ocs2) of the ocs2 library and install following the guidelines [here](https://leggedrobotics.github.io/ocs2/installation.html). This library has many dependencies among which Eigen, pinocchio, hpp-fcl. Make sure that the code is built successfully with `catkin build`.
+- Clone the current repo `wb_mpc_centauro`.
+- Clone somewhere the repos containing the necessary models for visualizing CENTAURO, i.e. [iit-centauro-ros-pkg](https://github.com/ADVRHumanoids/iit-centauro-ros-pkg) (contains the meshes of the robot), [iit-dagana-ros-pkg](https://github.com/ADVRHumanoids/iit-dagana-ros-pkg) (meshes for the gripper), [realsense_gazebo_description](https://github.com/m-tartari/realsense_gazebo_description), [realsense_gazebo_plugin](https://github.com/m-tartari/realsense_gazebo_plugin), [velodyne_simulator](https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/) (meshes for the sensor). These repos do not have to be cloned in the catkin workspace (since they do not have to be built), but anywhere else. You just have to add their path to your `$ROS_PACKAGE_PATH` through `export ROS_PACKAGE_PATH=<path_to_repos_with_models>:$ROS_PACKAGE_PATH`
+- (Optional for Gazebo/Hardware deployment) Clone [base_estimation](https://github.com/ADVRHumanoids/base_estimation) package (branch `ioannis_centauro`) or any state estimation module that you prefer for estimating the floating base pose and twist of the robot.
+- (Optional for Gazebo/Hardware deployment) Install the xbot2 middleware used for our robot in simulation and hardware. You can install the free binary release of xbot2, available [here](https://advrhumanoids.github.io/xbot2/master/index.html).
+- Finally, build everything by running `catkin build` in your catkin workspace folder.
 
-## Building the Code
-First you need to install [this fork](https://github.com/IoannisDadiotis/ocs2) of the ocs2 library following the guidelines [here](https://leggedrobotics.github.io/ocs2/installation.html). After this, the packages of the current repository can be git cloned inside a catkin workspace and built with `catkin build`.
+Notice that `catkin build` commands can take a lot of time! Make sure to run this when you have other things to do in parallel or take a coffee!!!
+
+### Docker-based installation and deployment
+We provide the docker image needed to run everything inside a docker container using Ubuntu 20.04 and ros noetic. All the docker-related files are in the `.devcontainer` folder in this repo. To start with, run `xhost +` in a terminal on your host, so that all users have access to X.
+
+**Deployment through terminal:** Inside the `.devcontainer` folder you can find three main scripts, `build.sh`, `run.sh`, `attach.sh`. Navigate to this folder and you can use them as follows from your terminal:
+
+`./build.sh <your_preferred_image_name>` to build the docker image
+
+`./run.sh <your_built_image_name> <your_preferred_container_name>` to run the image inside a docker container
+
+`./attach.sh <you_running_container_name>` to attach a new terminal inside the running container
+
+`./catkin_ws_build` to build the caktin workspace
+
+**Deployment through VSCode:** If you prefer so, you can build and run the docker image using VSCode, instead. To this end, open the `wb_mpc_centauro` repo in VSCode, then click on the bottom left symbol "Open a remote window" and the select the option "Reopen in Container" (or simply press `ctl`+`Shift`+`p` and type "Reopen in Container"). VSCode will start building the image, run it in a container and then build the catkin workspace. This will take a significant amount of time! Grab a coffee or two!
 
 ## Setting up the Optimal Control Problem (OCP)
 The OCP is partially defined in the `ocs2_centauro` package, i.e. the state and control input vectors as well as the considered kinematics and dynamics. However the user can modify the configuration `*.info` files in `ocs2_centauro/config` for tuning the OCP formulation without the need to rebuild the packages each time a parameter changes. Through this configuration file most of the included constraints/cost terms can be activated/deactivated and/or tuned. Solver-related options can be as well tuned/selected through the `.info` files.
