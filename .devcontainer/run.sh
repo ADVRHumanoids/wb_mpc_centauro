@@ -11,7 +11,7 @@ docker run --rm -it \
  --ipc=host \
  --env=DISPLAY \
  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
- -v $(pwd)/../../wb_mpc_centauro:/workspace/src \
+ -v $(pwd)/../../wb_mpc_centauro:/workspace/src/wb_mpc_centauro \
  "$IMAGE_NAME" 
 
 
