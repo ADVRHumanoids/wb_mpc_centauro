@@ -22,7 +22,7 @@ The repository is based on the [ocs2](https://leggedrobotics.github.io/ocs2/inde
 - `ocs2_centauro_references` which is a (python-based) package for sending task-related references once the mpc is up and running (e.g. a desired reference trajectory). For now, this is limited for setting up the tasks used in our corresponding publication.
 
 ## Installation & Building the Code
-If you have one of the supported Ubuntu OS (18.04 or 20.04) and ros distributions (melodic/noetic), you can install the install everything locally. Otherwise, you can use the framework by running everything in a docker container.
+If you have one of the supported Ubuntu OS (18.04 or 20.04) and ros distributions (melodic/noetic), you can install everything locally. Otherwise, you can use the framework by running everything in a docker container.
 
 ### Local installation
 - First create a catkin workspace and an `src/` folder inside the workspace. We are going to build the code in the workspace using [catkin tools](https://catkin-tools.readthedocs.io/en/latest/quick_start.html).
@@ -39,15 +39,15 @@ Notice that `catkin build` commands can take a lot of time! Make sure to run thi
 ### Docker-based installation and deployment
 We provide the docker image needed to run everything inside a docker container using Ubuntu 20.04 and ros noetic. All the docker-related files are in the `.devcontainer` folder in this repo. To start with, run `xhost +` in a terminal on your host, so that all users have access to X.
 
-**Deployment through terminal:** Inside the `.devcontainer` folder you can find three main scripts, `build.sh`, `run.sh`, `attach.sh`. Navigate to this folder and you can use them as follows from your terminal:
+**Deployment through terminal:** Inside the `.devcontainer` folder you can find four main scripts, `build.sh`, `run.sh`, `attach.sh`, and `catkin_ws_build`. Navigate inside `.devcontainer` folder and run the scripts as follows from your host's terminal:
 
-`./build.sh <your_preferred_image_name>` to build the docker image
+`./build.sh <your_preferred_image_name>` to first build the docker image
 
 `./run.sh <your_built_image_name> <your_preferred_container_name>` to run the image inside a docker container
 
 `./attach.sh <you_running_container_name>` to attach a new terminal inside the running container
 
-`./catkin_ws_build` to build the caktin workspace
+`./catkin_ws_build` to build the catkin workspace in the running container
 
 **Deployment through VSCode:** If you prefer so, you can build and run the docker image using VSCode, instead. To this end, open the `wb_mpc_centauro` repo in VSCode, then click on the bottom left symbol "Open a remote window" and the select the option "Reopen in Container" (or simply press `ctl`+`Shift`+`p` and type "Reopen in Container"). VSCode will start building the image, run it in a container and then build the catkin workspace. This will take a significant amount of time! Grab a coffee or two!
 
